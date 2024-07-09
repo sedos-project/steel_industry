@@ -30,7 +30,7 @@ setup(
     # There are some restrictions on what makes a valid project name
     # specification here:
     # https://packaging.python.org/specifications/core-metadata/#name
-    name="rli_template",  # Required
+    name="steel_industry",  # Required
     # Versions should comply with PEP 440:
     # https://www.python.org/dev/peps/pep-0440/
     #
@@ -41,7 +41,7 @@ setup(
     # This is a one-line description or tagline of what your project does. This
     # corresponds to the "Summary" metadata field:
     # https://packaging.python.org/specifications/core-metadata/#summary
-    description="Description",  # Optional
+    description="Models steel industry with the SEDOS reference dataset",  # Optional
     # This is an optional longer description of your project that represents
     # the body of text which users will see when they visit PyPI.
     #
@@ -66,7 +66,7 @@ setup(
     #
     # This field corresponds to the "Home-Page" metadata field:
     # https://packaging.python.org/specifications/core-metadata/#home-page-optional
-    url="https://github.com/rl-institut/rli_template",  # Optional
+    url="https://github.com/sedos-project/steel_industr",  # Optional
     # This should be your name or the name of the organization which owns the
     # project.
     author="Reiner Lemoine Institut",  # Optional
@@ -96,6 +96,7 @@ setup(
         "Programming Language :: Python :: 3.6",
         "Programming Language :: Python :: 3.7",
         "Programming Language :: Python :: 3.8",
+        "Programming Language :: Python :: 3.9",
     ],
     # This field adds keywords for your project which will appear on the
     # project page. What does your project relate to?
@@ -173,7 +174,7 @@ setup(
     # maintainers, and where to support the project financially. The key is
     # what's used to render the link text on PyPI.
     project_urls={  # Optional
-        "Bug Reports": "https://github.com/rl-institut/rli_template/issues",
-        "Source": "https://github.com/rl-institut/rli_template",
+        "Bug Reports": "https://github.com/sedos-project/steel_industry/issues",
+        "Source": "https://github.com/sedos-project/steel_industry",
     },
 )
