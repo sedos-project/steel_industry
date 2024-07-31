@@ -1,1 +1,209 @@
-{"id": "sedos_helper_import_electricity_from_plug_commodity", "@id": null, "name": "helper_import_electricity_from_plug", "title": "sedos_helper_import_electricity_from_plug", "review": {"path": null, "badge": null}, "context": {"contact": "Felix.Maurer@rl-institut.de", "grantNo": null, "homepage": "https://sedos-project.github.io/.github/", "sourceCode": "https://github.com/sedos-project/oedatamodel/tree/main/parameter_datamodel", "documentation": "https://sedos-project.github.io/.github/", "fundingAgency": null, "publisherLogo": null, "fundingAgencyLogo": null}, "sources": [{"path": "https://github.com/sedos-project/oedatamodel/tree/main/parameter_datamodel", "title": "Parameter datamodel from template for commodity", "licenses": [{"name": "CC0-1.0", "path": "https://creativecommons.org/publicdomain/zero/1.0/legalcode", "title": "Creative Commons Zero v1.0 Universal", "attribution": "\u00a9 Reiner Lemoine Institut", "instruction": "You are free: To Share, To Create, To Adapt"}], "description": "Parameter data model for secondary input scalars and timeseries"}], "spatial": {"extent": null, "location": null, "resolution": null}, "subject": [{"name": null, "path": null}], "@context": "https://raw.githubusercontent.com/OpenEnergyPlatform/oemetadata/master/metadata/latest/context.json", "_comment": {"null": "If not applicable use: null", "todo": "If a value is not yet available, use: todo", "dates": "Dates and time must follow the ISO8601 including time zone (YYYY-MM-DD or YYYY-MM-DDThh:mm:ss\u00b1hh)", "units": "Use a space between numbers and units (100 m)", "review": "Following the OEP Data Review (https://github.com/OpenEnergyPlatform/data-preprocessing/blob/master/data-review/manual/review_manual.md)", "licenses": "License name must follow the SPDX License List (https://spdx.org/licenses/)", "metadata": "Metadata documentation and explanation (https://github.com/OpenEnergyPlatform/oemetadata)", "languages": "Languages must follow the IETF (BCP47) format (en-GB, en-US, de-DE)"}, "keywords": ["sedos", "template", "commodity", "steel_casting_example", "helper", "import", "electricity", "from", "plug"], "language": ["en-GB"], "licenses": [{"name": "TestLicense", "path": "https://creativecommons.org/publicdomain/zero/1.0/legalcode", "title": null, "attribution": null, "instruction": null}], "temporal": {"timeseries": [], "referenceDate": null}, "resources": [{"name": "model_draft.helper_import_electricity_from_plug", "path": "/home/local/RL-INSTITUT/felix.maurer/rli/004_Dataworks/000_templates/000_Commodity/helper_import_electricity_from_plug.csv", "format": "PostgreSQL", "schema": {"fields": [{"name": "id", "type": "int", "unit": null, "isAbout": [{"name": "unique individual identifier", "path": "http://openenergy-platform.org/ontology/oeo/OEO_00010037"}], "description": "Unique identifier", "valueReference": []}, {"name": "version", "type": "text", "unit": null, "isAbout": [{"name": "dataset version string", "path": ""}], "description": "Version", "valueReference": []}, {"name": "year", "type": "int", "unit": null, "isAbout": [{"name": "year", "path": "http://purl.obolibrary.org/obo/UO_0000036"}], "description": "Year", "valueReference": []}, {"name": "carrier", "type": "text", "unit": null, "isAbout": [], "description": "None", "valueReference": []}, {"name": "category", "type": "text", "unit": null, "isAbout": [], "description": "None", "valueReference": []}, {"name": "region", "type": "text", "unit": null, "isAbout": [{"name": "subregion", "path": "http://openenergy-platform.org/ontology/oeo/OEO_00020033"}], "description": "Region in Germany", "valueReference": []}, {"name": "type", "type": "text", "unit": null, "isAbout": [], "description": "None", "valueReference": []}, {"name": "ef_generic_commodity_emi_co2_f_pow", "type": "float", "unit": null, "isAbout": [], "description": "None", "valueReference": []}], "primaryKey": ["id"], "foreignKeys": []}, "dialect": {"delimiter": ";", "decimalSeparator": "."}, "profile": "tabular_data_resource", "encoding": "UTF-8"}], "description": "datamodel, metadata and examples provided as datapackage", "contributors": [{"date": "2022-11-13", "email": null, "title": "FelixMau", "object": "datapackage", "comment": "Test data from template"}], "metaMetadata": {"metadataLicense": {"name": "CC0-1.0", "path": "https://creativecommons.org/publicdomain/zero/1.0/", "title": "Creative Commons Zero v1.0 Universal"}, "metadataVersion": "OEP-1.5.2"}, "publicationDate": "2022-11-14"}
+{
+  "@context": "https://raw.githubusercontent.com/OpenEnergyPlatform/oemetadata/master/metadata/latest/context.json",
+  "@id": null,
+  "_comment": {
+    "dates": "Dates and time must follow the ISO8601 including time zone (YYYY-MM-DD or YYYY-MM-DDThh:mm:ss\u00b1hh)",
+    "languages": "Languages must follow the IETF (BCP47) format (en-GB, en-US, de-DE)",
+    "licenses": "License name must follow the SPDX License List (https://spdx.org/licenses/)",
+    "metadata": "Metadata documentation and explanation (https://github.com/OpenEnergyPlatform/oemetadata)",
+    "null": "If not applicable use: null",
+    "review": "Following the OEP Data Review (https://github.com/OpenEnergyPlatform/data-preprocessing/blob/master/data-review/manual/review_manual.md)",
+    "todo": "If a value is not yet available, use: todo",
+    "units": "Use a space between numbers and units (100 m)"
+  },
+  "context": {
+    "contact": "Felix.Maurer@rl-institut.de",
+    "documentation": "https://sedos-project.github.io/.github/",
+    "fundingAgency": null,
+    "fundingAgencyLogo": null,
+    "grantNo": null,
+    "homepage": "https://sedos-project.github.io/.github/",
+    "publisherLogo": null,
+    "sourceCode": "https://github.com/sedos-project/oedatamodel/tree/main/parameter_datamodel"
+  },
+  "contributors": [
+    {
+      "comment": "Test data from template",
+      "date": "2022-11-13",
+      "email": null,
+      "object": "datapackage",
+      "title": "FelixMau"
+    }
+  ],
+  "description": "datamodel, metadata and examples provided as datapackage",
+  "id": "sedos_helper_import_electricity_from_plug_commodity",
+  "keywords": [
+    "sedos",
+    "template",
+    "commodity",
+    "steel_casting_example",
+    "helper",
+    "import",
+    "electricity",
+    "from",
+    "plug"
+  ],
+  "language": [
+    "en-GB"
+  ],
+  "licenses": [
+    {
+      "attribution": null,
+      "instruction": null,
+      "name": "TestLicense",
+      "path": "https://creativecommons.org/publicdomain/zero/1.0/legalcode",
+      "title": null
+    }
+  ],
+  "metaMetadata": {
+    "metadataLicense": {
+      "name": "CC0-1.0",
+      "path": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "title": "Creative Commons Zero v1.0 Universal"
+    },
+    "metadataVersion": "OEP-1.5.2"
+  },
+  "name": "helper_import_electricity_from_plug",
+  "publicationDate": "2022-11-14",
+  "resources": [
+    {
+      "dialect": {
+        "decimalSeparator": ".",
+        "delimiter": ";"
+      },
+      "encoding": "UTF-8",
+      "format": "PostgreSQL",
+      "name": "model_draft.helper_import_electricity_from_plug",
+      "path": "/home/local/RL-INSTITUT/felix.maurer/rli/004_Dataworks/000_templates/000_Commodity/helper_import_electricity_from_plug.csv",
+      "profile": "tabular_data_resource",
+      "schema": {
+        "fields": [
+          {
+            "description": "Unique identifier",
+            "isAbout": [
+              {
+                "name": "unique individual identifier",
+                "path": "http://openenergy-platform.org/ontology/oeo/OEO_00010037"
+              }
+            ],
+            "name": "id",
+            "type": "int",
+            "unit": null,
+            "valueReference": []
+          },
+          {
+            "description": "Version",
+            "isAbout": [
+              {
+                "name": "dataset version string",
+                "path": ""
+              }
+            ],
+            "name": "version",
+            "type": "text",
+            "unit": null,
+            "valueReference": []
+          },
+          {
+            "description": "Year",
+            "isAbout": [
+              {
+                "name": "year",
+                "path": "http://purl.obolibrary.org/obo/UO_0000036"
+              }
+            ],
+            "name": "year",
+            "type": "int",
+            "unit": null,
+            "valueReference": []
+          },
+          {
+            "description": "None",
+            "isAbout": [],
+            "name": "carrier",
+            "type": "text",
+            "unit": null,
+            "valueReference": []
+          },
+          {
+            "description": "None",
+            "isAbout": [],
+            "name": "category",
+            "type": "text",
+            "unit": null,
+            "valueReference": []
+          },
+          {
+            "description": "Region in Germany",
+            "isAbout": [
+              {
+                "name": "subregion",
+                "path": "http://openenergy-platform.org/ontology/oeo/OEO_00020033"
+              }
+            ],
+            "name": "region",
+            "type": "text",
+            "unit": null,
+            "valueReference": []
+          },
+          {
+            "description": "None",
+            "isAbout": [],
+            "name": "type",
+            "type": "text",
+            "unit": null,
+            "valueReference": []
+          },
+          {
+            "description": "None",
+            "isAbout": [],
+            "name": "ef_generic_commodity_emi_co2_f_pow",
+            "type": "float",
+            "unit": null,
+            "valueReference": []
+          }
+        ],
+        "foreignKeys": [],
+        "primaryKey": [
+          "id"
+        ]
+      }
+    }
+  ],
+  "review": {
+    "badge": null,
+    "path": null
+  },
+  "sources": [
+    {
+      "description": "Parameter data model for secondary input scalars and timeseries",
+      "licenses": [
+        {
+          "attribution": "\u00a9 Reiner Lemoine Institut",
+          "instruction": "You are free: To Share, To Create, To Adapt",
+          "name": "CC0-1.0",
+          "path": "https://creativecommons.org/publicdomain/zero/1.0/legalcode",
+          "title": "Creative Commons Zero v1.0 Universal"
+        }
+      ],
+      "path": "https://github.com/sedos-project/oedatamodel/tree/main/parameter_datamodel",
+      "title": "Parameter datamodel from template for commodity"
+    }
+  ],
+  "spatial": {
+    "extent": null,
+    "location": null,
+    "resolution": null
+  },
+  "subject": [
+    {
+      "name": null,
+      "path": null
+    }
+  ],
+  "temporal": {
+    "referenceDate": null,
+    "timeseries": []
+  },
+  "title": "sedos_helper_import_electricity_from_plug"
+}
