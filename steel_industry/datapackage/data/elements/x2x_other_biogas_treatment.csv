@@ -1,0 +1,2 @@
+type;carrier;tech;region;year;from_bus_0;to_bus_0;to_bus_1;name;groups;conversion_factor_sec_biogas;conversion_factor_sec_methane_orig;conversion_factor_emi_co2_reusable
+mimo;carrier;tech;DE;[2021, 2024, 2027, 2030, 2035, 2040, 2045, 2050, 2060, 2070];sec_biogas;sec_methane_orig;emi_co2_reusable;x2x_other_biogas_treatment--18;{};1.904;1.0;0.1783

@@ -1,0 +1,344 @@
+{
+  "@context": "https://raw.githubusercontent.com/OpenEnergyPlatform/oemetadata/develop/metadata/latest/context.json",
+  "@id": null,
+  "_comment": {
+    "dates": "Dates and time must follow the ISO8601 including time zone (YYYY-MM-DD or YYYY-MM-DDThh:mm:ss\u00b1hh)",
+    "languages": "Languages must follow the IETF (BCP47) format (en-GB, en-US, de-DE)",
+    "licenses": "License name must follow the SPDX License List (https://spdx.org/licenses/)",
+    "metadata": "Metadata documentation and explanation (https://github.com/OpenEnergyPlatform/oemetadata)",
+    "null": "If not applicable use: null",
+    "review": "Following the OEP Data Review (https://github.com/OpenEnergyPlatform/data-preprocessing/blob/master/data-review/manual/review_manual.md)",
+    "todo": "If a value is not yet available, use: todo",
+    "units": "Use a space between numbers and units (100 m)"
+  },
+  "context": {
+    "contact": "ulrich.fahl@ier.uni-stuttgart.de",
+    "documentation": "https://sedos-project.github.io/.github/",
+    "fundingAgency": "Bundesministerium f\u00c3\u00bcr Wirtschaft und Klimaschutz (BMWK)",
+    "fundingAgencyLogo": "https://en.wikipedia.org/wiki/Federal_Ministry_for_Economic_Affairs_and_Climate_Action#/media/File:BMWi_Logo_2021.svg",
+    "grantNo": null,
+    "homepage": "https://sedos-project.github.io/.github/",
+    "publisherLogo": null,
+    "sourceCode": "https://github.com/sedos-project"
+  },
+  "contributors": [
+    {
+      "comment": "Created data and metadata in specific format based on provided data",
+      "date": "2024-06-26",
+      "email": "md-anik.islam@ier.uni-stuttgart.de",
+      "object": "data and metadata for industry",
+      "title": "Anik Islam"
+    },
+    {
+      "comment": "Prepared and Provided data and necessary details of cement, glass, steel, aluminium and paper industry",
+      "date": "2024-06-26",
+      "email": "isela.bailey@ier.uni-stuttgart.de",
+      "object": "data and metadata for industry",
+      "title": "Isela Bailey"
+    }
+  ],
+  "description": "Dataset describes scalar techno-economic and scenario data of technology/process: IND.IIS. Electric Arc Furnace for DRI + Hydrogen",
+  "id": "https://openenergy-platform.org/dataedit/view/model_draft/ind_steel_hyddri_1",
+  "keywords": [
+    "SEDOS",
+    "input_data",
+    "AP7",
+    "Industry",
+    "oedatamodel-parameter",
+    "steel"
+  ],
+  "language": [
+    "en-GB"
+  ],
+  "licenses": [
+    {
+      "attribution": null,
+      "instruction": "You are free to: Share- copy and redistribute the material in any medium or format for any purpose, even commercially. Adapt - remix, transform, and build upon the material for any purpose, even commercially.",
+      "name": "CC-BY-4.0",
+      "path": "https://creativecommons.org/licenses/by/4.0/?ref=chooser-v1",
+      "title": "Creative Commons Attribution 4.0 International"
+    }
+  ],
+  "metaMetadata": {
+    "metadataLicense": {
+      "name": "CC0-1.0",
+      "path": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "title": "Creative Commons Zero v1.0 Universal"
+    },
+    "metadataVersion": "OEP-1.5.2"
+  },
+  "name": "ind_steel_hyddri_1",
+  "publicationDate": "2024-06-26",
+  "resources": [
+    {
+      "dialect": {
+        "decimalSeparator": ".",
+        "delimiter": ";"
+      },
+      "encoding": "UTF-8",
+      "format": "PostgreSQL",
+      "name": "model_draft.ind_steel_hyddri_1",
+      "path": "https://openenergy-platform.org/dataedit/view/model_draft/ind_steel_hyddri_1",
+      "profile": "tabular-data-resource",
+      "schema": {
+        "fields": [
+          {
+            "description": "Unique identifier",
+            "isAbout": [],
+            "name": "id",
+            "type": "bigint",
+            "unit": null,
+            "valueReference": []
+          },
+          {
+            "description": "Country or regionx",
+            "isAbout": [],
+            "name": "region",
+            "type": "text",
+            "unit": null,
+            "valueReference": []
+          },
+          {
+            "description": "Year",
+            "isAbout": [],
+            "name": "year",
+            "type": "integer",
+            "unit": "a",
+            "valueReference": []
+          },
+          {
+            "description": "Type of process",
+            "isAbout": [],
+            "name": "type",
+            "type": "text",
+            "unit": null,
+            "valueReference": []
+          },
+          {
+            "description": "Commodity-specific conversion factor (multiplication of input and output factors yields the efficiency of the process).",
+            "isAbout": [
+              {
+                "name": "energy conversion efficiency",
+                "path": "http://openenergyplatform.org/ontology/oeo/OEO_00140049/"
+              }
+            ],
+            "name": "conversion_factor_iip_steel_crudesteel",
+            "type": "float",
+            "unit": "Mt",
+            "valueReference": []
+          },
+          {
+            "description": "Commodity-specific conversion factor (multiplication of input and output factors yields the efficiency of the process).",
+            "isAbout": [
+              {
+                "name": "energy conversion efficiency",
+                "path": "http://openenergyplatform.org/ontology/oeo/OEO_00140049/"
+              }
+            ],
+            "name": "conversion_factor_sec_elec_ind",
+            "type": "float",
+            "unit": "PJ/Mt",
+            "valueReference": []
+          },
+          {
+            "description": "Commodity-specific conversion factor (multiplication of input and output factors yields the efficiency of the process).",
+            "isAbout": [
+              {
+                "name": "energy conversion efficiency",
+                "path": "http://openenergyplatform.org/ontology/oeo/OEO_00140049/"
+              }
+            ],
+            "name": "conversion_factor_sec_hydrogen",
+            "type": "float",
+            "unit": "PJ/Mt",
+            "valueReference": []
+          },
+          {
+            "description": "Constant output ratio in relation to installed capacity. (= h/a)",
+            "isAbout": [
+              {
+                "name": "unplanned availability",
+                "path": "http://openenergyplatform.org/ontology/oeo/OEO_00140129/"
+              }
+            ],
+            "name": "availability_constant",
+            "type": "float",
+            "unit": "%",
+            "valueReference": []
+          },
+          {
+            "description": "Absolute upper bound on level of investment in new weight capacity for a period.",
+            "isAbout": [
+              {
+                "name": null,
+                "path": null
+              }
+            ],
+            "name": "capacity_w_abs_new_max",
+            "type": "float",
+            "unit": "Mt",
+            "valueReference": []
+          },
+          {
+            "description": "Investment costs for new capacity per unit weight.",
+            "isAbout": [
+              {
+                "name": "investment cost",
+                "path": "http://openenergyplatform.org/ontology/oeo/OEO_00020167/"
+              }
+            ],
+            "name": "cost_inv_w",
+            "type": "float",
+            "unit": "M\u20ac/Mt",
+            "valueReference": []
+          },
+          {
+            "description": "Operation independent costs for capacity per unit weight.",
+            "isAbout": [
+              {
+                "name": "fixed cost ",
+                "path": "http://openenergyplatform.org/ontology/oeo/OEO_00020168/"
+              }
+            ],
+            "name": "cost_fix_w",
+            "type": "float",
+            "unit": "M\u20ac/Mt",
+            "valueReference": []
+          },
+          {
+            "description": "Technical lifetime of a process.",
+            "isAbout": [
+              {
+                "name": "operational life time",
+                "path": "http://openenergyplatform.org/ontology/oeo/OEO_00020178/"
+              }
+            ],
+            "name": "lifetime",
+            "type": "float",
+            "unit": "a",
+            "valueReference": []
+          },
+          {
+            "description": "Percentage of costs for capital after taxes. Used to calculate annuity factor for investment costs.",
+            "isAbout": [
+              {
+                "name": null,
+                "path": null
+              }
+            ],
+            "name": "wacc",
+            "type": "text",
+            "unit": "%",
+            "valueReference": []
+          },
+          {
+            "description": "Bandwidth Type",
+            "isAbout": [],
+            "name": "bandwidth_type",
+            "type": "json",
+            "unit": null,
+            "valueReference": []
+          },
+          {
+            "description": "Version",
+            "isAbout": [],
+            "name": "version",
+            "type": "text",
+            "unit": null,
+            "valueReference": []
+          },
+          {
+            "description": "Method",
+            "isAbout": [],
+            "name": "method",
+            "type": "json",
+            "unit": null,
+            "valueReference": []
+          },
+          {
+            "description": "Source",
+            "isAbout": [],
+            "name": "source",
+            "type": "json",
+            "unit": null,
+            "valueReference": []
+          },
+          {
+            "description": "Comment",
+            "isAbout": [],
+            "name": "comment",
+            "type": "json",
+            "unit": null,
+            "valueReference": []
+          }
+        ],
+        "foreignKeys": [],
+        "primaryKey": [
+          "id"
+        ]
+      }
+    }
+  ],
+  "review": {
+    "badge": null,
+    "path": null
+  },
+  "sources": [
+    {
+      "description": "Parameter data model for secondary input scalars and timeseries",
+      "licenses": [
+        {
+          "attribution": null,
+          "instruction": "You are free: To Share, To Create, To Adapt",
+          "name": "CC0-1.0",
+          "path": "https://creativecommons.org/publicdomain/zero/1.0/legalcode",
+          "title": "Creative Commons Zero v1.0 Universal"
+        }
+      ],
+      "path": "https://github.com/sedos-project/oedatamodel/tree/main/oedatamodel-parameter",
+      "title": "OEDatamodel-parameter"
+    },
+    {
+      "description": "TAM Industry is based on TIMES and focuses on German industry energy system",
+      "licenses": [
+        {
+          "attribution": "@Energy Economics and Social Analysis(ESA), IER, University of Stuttgart",
+          "instruction": null,
+          "name": "Creative Commons Attribution 4.0 International",
+          "path": "https://creativecommons.org/licenses/by/4.0/",
+          "title": "CC BY 4.0"
+        }
+      ],
+      "path": null,
+      "title": "TAM Industry Model"
+    }
+  ],
+  "spatial": {
+    "extent": "DE",
+    "location": "Germany",
+    "resolution": "NUTS-0"
+  },
+  "subject": [
+    {
+      "name": "Industry Sector",
+      "path": "http://openenergy-platform.org/ontology/oeo/OEO_00000227/"
+    },
+    {
+      "name": "Industry Sub-sector",
+      "path": "http://openenergy-platform.org/ontology/oeo/OEO_00000227"
+    }
+  ],
+  "temporal": {
+    "referenceDate": "2021",
+    "timeseries": [
+      {
+        "aggregationType": null,
+        "alignment": null,
+        "end": "2070-12-31",
+        "resolution": "yearly",
+        "start": "2021-01-01"
+      }
+    ]
+  },
+  "title": "sedos_ind_steel_hyddri_1"
+}

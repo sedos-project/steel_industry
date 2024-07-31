@@ -1,0 +1,2 @@
+type;carrier;tech;region;year;lifetime;from_bus_0;to_bus_0;to_bus_1;name;groups;conversion_factor_sec_elec;conversion_factor_sec_hydrogen_orig;conversion_factor_sec_heat_low
+mimo;carrier;tech;DE;[2021, 2024, 2027, 2030, 2035, 2040, 2045, 2050, 2060, 2070];20;sec_elec;sec_hydrogen_orig;sec_heat_low;x2x_p2gas_pemec_1--31;{};1.0;[0.51, 0.545, 0.564, 0.585, 0.601, 0.616, 0.64, 0.627, 0.627, 0.627];[0.315, 0.343, 0.326, 0.295, 0.276, 0.257, 0.228, 0.15, 0.15, 0.15]

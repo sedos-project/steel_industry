@@ -1,0 +1,2 @@
+type;carrier;tech;region;year;lifetime;capacity_cost;from_bus_0;from_bus_1;to_bus_0;to_bus_1;to_bus_2;to_bus_3;name;groups;conversion_factor_iip_coke;conversion_factor_pri_coal;conversion_factor_sec_elec_ind
+mimo;carrier;tech;DE;[2021, 2024, 2027, 2030, 2035, 2040, 2045, 2050, 2060, 2070];30;90.0;sec_elec_ind;pri_coal;iip_coke;emi_co2_f_ind;emi_ch4_f_ind;emi_n2o_f_ind;ind_steel_coke_plant_1--0;{};1.0;1.3333;0.001

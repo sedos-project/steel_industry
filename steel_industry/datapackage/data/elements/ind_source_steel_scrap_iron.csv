@@ -1,0 +1,2 @@
+type;carrier;amount;region;year;bus;name
+commodity;iip_steel_scrap;20.0;DE;[2021, 2024, 2027, 2030, 2035, 2040, 2045, 2050, 2060, 2070];iip_steel_scrap;ind_source_steel_scrap_iron--1

@@ -1,0 +1,2 @@
+type;carrier;tech;capacity_cost;region;year;from_bus;to_bus;name
+conversion;carrier;tech;[1413000.0, 1340217.0, 1267391.0, 1195652.0, 1114130.0, 1032609.0, 951087.0, 869565.0, 869565.0, 869565.0];DE;[2021, 2024, 2027, 2030, 2035, 2040, 2045, 2050, 2060, 2070];ch4;electricity;x2x_g2p_pemfc_ls_1--14
