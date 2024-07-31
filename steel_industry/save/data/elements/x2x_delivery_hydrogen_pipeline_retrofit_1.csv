@@ -1,0 +1,2 @@
+type;carrier;tech;capacity_cost;capacity_potential;region;year;from_bus;to_bus;name
+conversion;carrier;tech;25210.0;[0.0, 97050.0, 194100.0, 388200.0, 485250.0, 776400.0, 1552800.0, 1843950.0, 1843950.0, 1843950.0];DE;[2021, 2024, 2027, 2030, 2035, 2040, 2045, 2050, 2060, 2070];ch4;electricity;x2x_delivery_hydrogen_pipeline_retrofit_1--19

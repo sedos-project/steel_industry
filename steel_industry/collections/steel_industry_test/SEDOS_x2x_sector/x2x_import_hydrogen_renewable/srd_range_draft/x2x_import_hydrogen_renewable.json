@@ -1,0 +1,210 @@
+{
+  "id": null,
+  "@id": null,
+  "name": "x2x_import_hydrogen_renewable",
+  "title": "sedos_x2x_import_hydrogen_renewable",
+  "review": null,
+  "context": {
+    "contact": "g.mueller@fz-juelich.de",
+    "grantNo": "03EI1040D",
+    "homepage": "https://sedos-project.github.io/.github/",
+    "sourceCode": "https://github.com/sedos-project",
+    "documentation": "https://sedos-project.github.io/.github/",
+    "fundingAgency": "Bundesministerium f\u00fcr Wirtschaft und Klimaschutz (BMWK)",
+    "fundingAgencyLogo": "https://en.wikipedia.org/wiki/Federal_Ministry_for_Economic_Affairs_and_Climate_Action#/media/File:BMWi_Logo_2021.svg"
+  },
+  "sources": [
+    {
+      "path": "https://2022.entsos-tyndp-scenarios.eu/wp-content/uploads/2022/04/TYNDP_2022_Scenario_Building_Guidelines_Version_April_2022.pdf",
+      "title": "TYNDP 2022. Scenario Building Guidelines.",
+      "licenses": [
+        {
+          "name": null,
+          "path": null,
+          "title": null,
+          "attribution": "copyright. ENTSOG, ENTSO-E, 2022.",
+          "instruction": null
+        }
+      ],
+      "description": null
+    }
+  ],
+  "spatial": {
+    "extent": null,
+    "location": "germany",
+    "resolution": null
+  },
+  "subject": [
+    {
+      "name": "import",
+      "path": "http://openenergy-platform.org/ontology/oeo/OEO_00020201"
+    },
+    {
+      "name": "hydrogen",
+      "path": "http://openenergy-platform.org/ontology/oeo/OEO_00000220"
+    }
+  ],
+  "@context": "https://raw.githubusercontent.com/OpenEnergyPlatform/oemetadata/develop/metadata/latest/context.json",
+  "_comment": {
+    "null": "If not applicable use: null",
+    "todo": "If a value is not yet available, use: todo",
+    "dates": "Dates and time must follow the ISO8601 including time zone (YYYY-MM-DD or YYYY-MM-DDThh:mm:ss\u00b1hh)",
+    "units": "Use a space between numbers and units (100 m)",
+    "review": "Following the OEP Data Review (https://github.com/OpenEnergyPlatform/data-preprocessing/blob/master/data-review/manual/review_manual.md)",
+    "licenses": "License name must follow the SPDX License List (https://spdx.org/licenses/)",
+    "metadata": "Metadata documentation and explanation (https://github.com/OpenEnergyPlatform/oemetadata)",
+    "languages": "Languages must follow the IETF (BCP47) format (en-GB, en-US, de-DE)"
+  },
+  "keywords": [
+    "SEDOS",
+    "AP5",
+    "X2X",
+    "oedatamodel-parameter",
+    "input_data",
+    "steel_industry"
+  ],
+  "language": [
+    "en-GB"
+  ],
+  "licenses": [
+    {
+      "name": "CC0-1.0",
+      "path": "https://creativecommons.org/publicdomain/zero/1.0/legalcode",
+      "title": "Creative Commons Zero v1.0 Universal",
+      "attribution": null,
+      "instruction": "You are free: To Share, To Create, To Adapt"
+    }
+  ],
+  "temporal": {
+    "timeseries": [
+      {
+        "end": null,
+        "start": null,
+        "alignment": null,
+        "resolution": null,
+        "aggregationType": null
+      }
+    ],
+    "referenceDate": null
+  },
+  "resources": [
+    {
+      "name": "model_draft.x2x_import_hydrogen_renewable",
+      "path": null,
+      "format": "PostgreSQL",
+      "schema": {
+        "fields": [
+          {
+            "name": "id",
+            "type": "bigint",
+            "unit": null,
+            "isAbout": [],
+            "description": "Unique identifier",
+            "valueReference": []
+          },
+          {
+            "name": "region",
+            "type": "text",
+            "unit": null,
+            "isAbout": [],
+            "description": "Country or region",
+            "valueReference": []
+          },
+          {
+            "name": "year",
+            "type": "integer",
+            "unit": "a",
+            "isAbout": [],
+            "description": "Year",
+            "valueReference": []
+          },
+          {
+            "name": "cost_var_e",
+            "type": "float array",
+            "unit": "\u20ac/MWh",
+            "isAbout": [],
+            "description": "Variable costs in cost per unit of a certain good.",
+            "valueReference": []
+          },
+          {
+            "name": "bandwidth_type",
+            "type": "json",
+            "unit": null,
+            "isAbout": [],
+            "description": "Bandwidth Type",
+            "valueReference": []
+          },
+          {
+            "name": "version",
+            "type": "text",
+            "unit": null,
+            "isAbout": [],
+            "description": "Version",
+            "valueReference": []
+          },
+          {
+            "name": "method",
+            "type": "json",
+            "unit": null,
+            "isAbout": [],
+            "description": "Method",
+            "valueReference": []
+          },
+          {
+            "name": "source",
+            "type": "json",
+            "unit": null,
+            "isAbout": [],
+            "description": "Source",
+            "valueReference": []
+          },
+          {
+            "name": "comment",
+            "type": "text",
+            "unit": null,
+            "isAbout": [],
+            "description": "Comment",
+            "valueReference": []
+          },
+          {
+            "name": "capacity_w_inst_0",
+            "type": "integer",
+            "unit": null,
+            "isAbout": [],
+            "description": "capacity_w_inst_0",
+            "valueReference": []
+          }
+        ],
+        "primaryKey": [
+          "id"
+        ],
+        "foreignKeys": []
+      },
+      "dialect": {
+        "delimiter": ";",
+        "decimalSeparator": "."
+      },
+      "profile": "tabular-data-resource",
+      "encoding": "UTF-8"
+    }
+  ],
+  "description": "Techno-economic parameter for import of renewable hydrogen.",
+  "contributors": [
+    {
+      "date": "2024-04-08",
+      "email": "g.mueller@fz-juelich.de",
+      "title": "Gian M\u00fcller, FZJ",
+      "object": "data and metadata",
+      "comment": "Datafor import of renewable hydrogen."
+    }
+  ],
+  "metaMetadata": {
+    "metadataLicense": {
+      "name": "CC0-1.0",
+      "path": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "title": "Creative Commons Zero v1.0 Universal"
+    },
+    "metadataVersion": "OEP-1.5.2"
+  },
+  "publicationDate": "2024-04-08"
+}
