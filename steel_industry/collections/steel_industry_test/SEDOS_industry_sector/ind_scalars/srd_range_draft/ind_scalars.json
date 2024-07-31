@@ -1,1 +1,616 @@
-{"id": "https://openenergy-platform.org/dataedit/view/model_draft/ind_scalars", "@id": null, "name": "ind_scalars", "title": "sedos_ind_scalars", "review": {"path": null, "badge": null}, "context": {"contact": "ulrich.fahl@ier.uni-stuttgart.de", "grantNo": null, "homepage": "https://sedos-project.github.io/.github/", "sourceCode": "https://github.com/sedos-project", "documentation": "https://sedos-project.github.io/.github/", "fundingAgency": "Bundesministerium f\u00c3\u00bcr Wirtschaft und Klimaschutz (BMWK)", "publisherLogo": null, "fundingAgencyLogo": "https://en.wikipedia.org/wiki/Federal_Ministry_for_Economic_Affairs_and_Climate_Action#/media/File:BMWi_Logo_2021.svg"}, "sources": [{"path": "https://github.com/sedos-project/oedatamodel/tree/main/oedatamodel-parameter", "title": "OEDatamodel-parameter", "licenses": [{"name": "CC0-1.0", "path": "https://creativecommons.org/publicdomain/zero/1.0/legalcode", "title": "Creative Commons Zero v1.0 Universal", "attribution": null, "instruction": "You are free: To Share, To Create, To Adapt"}], "description": "Parameter data model for secondary input scalars and timeseries"}, {"path": null, "title": "TAM Industry Model", "licenses": [{"name": "Creative Commons Attribution 4.0 International", "path": "https://creativecommons.org/licenses/by/4.0/", "title": "CC BY 4.0", "attribution": "@Energy Economics and Social Analysis(ESA), IER, University of Stuttgart", "instruction": null}], "description": "TAM Industry is based on TIMES and focuses on German industry energy system"}], "spatial": {"extent": "DE", "location": "Germany", "resolution": "NUTS-0"}, "subject": [{"name": "Industry Sector", "path": "http://openenergy-platform.org/ontology/oeo/OEO_00000227/"}, {"name": "Industry Sub-sector", "path": "http://openenergy-platform.org/ontology/oeo/OEO_00000227"}], "@context": "https://raw.githubusercontent.com/OpenEnergyPlatform/oemetadata/develop/metadata/latest/context.json", "_comment": {"null": "If not applicable use: null", "todo": "If a value is not yet available, use: todo", "dates": "Dates and time must follow the ISO8601 including time zone (YYYY-MM-DD or YYYY-MM-DDThh:mm:ss\u00b1hh)", "units": "Use a space between numbers and units (100 m)", "review": "Following the OEP Data Review (https://github.com/OpenEnergyPlatform/data-preprocessing/blob/master/data-review/manual/review_manual.md)", "licenses": "License name must follow the SPDX License List (https://spdx.org/licenses/)", "metadata": "Metadata documentation and explanation (https://github.com/OpenEnergyPlatform/oemetadata)", "languages": "Languages must follow the IETF (BCP47) format (en-GB, en-US, de-DE)"}, "keywords": ["SEDOS", "input_data", "AP7", "Industry", "oedatamodel-parameter"], "language": ["en-GB"], "licenses": [{"name": "CC-BY-4.0", "path": "https://creativecommons.org/licenses/by/4.0/?ref=chooser-v1", "title": "Creative Commons Attribution 4.0 International", "attribution": null, "instruction": "You are free to: Share- copy and redistribute the material in any medium or format for any purpose, even commercially. Adapt - remix, transform, and build upon the material for any purpose, even commercially."}], "temporal": {"timeseries": [{"end": "2070-12-31", "start": "2021-01-01", "alignment": null, "resolution": "yearly", "aggregationType": null}], "referenceDate": "2021"}, "resources": [{"name": "model_draft.ind_scalars", "path": "https://openenergy-platform.org/dataedit/view/model_draft/ind_scalars", "format": "PostgreSQL", "schema": {"fields": [{"name": "id", "type": "bigint", "unit": null, "isAbout": [], "description": "Unique identifier", "valueReference": []}, {"name": "region", "type": "text", "unit": null, "isAbout": [], "description": "Country or regionx", "valueReference": []}, {"name": "year", "type": "integer", "unit": "a", "isAbout": [], "description": "Year", "valueReference": []}, {"name": "type", "type": "text", "unit": null, "isAbout": [], "description": "Type of process", "valueReference": []}, {"name": "exo_aluminum", "type": "float", "unit": "Mt", "isAbout": [{"name": null, "path": null}], "description": "aluiminum,  aluiminum industry, demand in million ton, exogeneous data", "valueReference": []}, {"name": "exo_cement", "type": "float", "unit": "Mt", "isAbout": [{"name": null, "path": null}], "description": "cement,cement industry, demand in million ton, exogeneous data", "valueReference": []}, {"name": "exo_copper", "type": "float", "unit": "Mt", "isAbout": [{"name": null, "path": null}], "description": "copper, copper industry, demand in million ton, exogeneous data", "valueReference": []}, {"name": "exo_glass_flat", "type": "float", "unit": "Mt", "isAbout": [{"name": null, "path": null}], "description": "glass flat, glass industry, demand in million ton, exogeneous data", "valueReference": []}, {"name": "exo_glass_cont", "type": "float", "unit": "Mt", "isAbout": [{"name": null, "path": null}], "description": "glass hollow, glass industry, demand in million ton, exogeneous data", "valueReference": []}, {"name": "exo_glass_fibe", "type": "float", "unit": "Mt", "isAbout": [{"name": null, "path": null}], "description": "glass fiber, glass industry, demand in million ton, exogeneous data", "valueReference": []}, {"name": "exo_glass_spec", "type": "float", "unit": "Mt", "isAbout": [{"name": null, "path": null}], "description": "glass special, glass industry, demand in million ton, exogeneous data", "valueReference": []}, {"name": "exo_steel", "type": "float", "unit": "Mt", "isAbout": [{"name": null, "path": null}], "description": "steel demand, steel industry, demand in million ton, exogeneous data", "valueReference": []}, {"name": "exo_paper_hq", "type": "float", "unit": "Mt", "isAbout": [{"name": null, "path": null}], "description": "paper high quality, paper industry, demand in million ton, exogeneous data", "valueReference": []}, {"name": "exo_paper_lq", "type": "float", "unit": "Mt", "isAbout": [{"name": null, "path": null}], "description": "paper low quality, paper industry, demand in million ton, exogeneous data", "valueReference": []}, {"name": "exo_agri_livestock", "type": "float", "unit": "Million units", "isAbout": [{"name": null, "path": null}], "description": "Livestocks, agriculture, exogeneous data", "valueReference": []}, {"name": "exo_chemi_btx", "type": "float", "unit": "Mt", "isAbout": [{"name": null, "path": null}], "description": "aromatics(btx), chemical industry, demand in million ton, exogeneous data", "valueReference": []}, {"name": "exo_chemi_others", "type": "float", "unit": "PJ", "isAbout": [{"name": null, "path": null}], "description": "other chemicals, chemical industry, energy service demand, exogeneous data", "valueReference": []}, {"name": "exo_chemi_cl2", "type": "float", "unit": "Mt", "isAbout": [{"name": null, "path": null}], "description": "Cl2, chemical industry, demand in million ton, exogeneous data", "valueReference": []}, {"name": "exo_chemi_methanol", "type": "float", "unit": "Mt", "isAbout": [{"name": null, "path": null}], "description": "methanol, chemical industry, demand in million ton, exogeneous data", "valueReference": []}, {"name": "exo_chemi_nh3", "type": "float", "unit": "Mt", "isAbout": [{"name": null, "path": null}], "description": "NH3, chemical industry, demand in million ton, exogeneous data", "valueReference": []}, {"name": "exo_chemi_olefins", "type": "float", "unit": "Mt", "isAbout": [{"name": null, "path": null}], "description": "olefins, chemical industry, demand in million ton, exogeneous data", "valueReference": []}, {"name": "exo_auto_hcv_bev", "type": "float", "unit": "Million units", "isAbout": [{"name": null, "path": null}], "description": "heavy commercial vehicle, BEV, automobile industry, demand in million unit, exogenous data", "valueReference": []}, {"name": "exo_auto_hcv_fcev", "type": "float", "unit": "Million units", "isAbout": [{"name": null, "path": null}], "description": "heavy commercial vehicle, FCEV, automobile industry, demand in million unit, exogenous data", "valueReference": []}, {"name": "exo_auto_hcv_icev", "type": "float", "unit": "Million units", "isAbout": [{"name": null, "path": null}], "description": "heavy commercial vehicle, ICEV, automobile industry, demand in million unit, exogenous data", "valueReference": []}, {"name": "exo_auto_lcv_bev", "type": "float", "unit": "Million units", "isAbout": [{"name": null, "path": null}], "description": "light commercial vehicle, BEV, automobile industry, demand in million unit, exogenous data", "valueReference": []}, {"name": "exo_auto_lcv_fcev", "type": "float", "unit": "Million units", "isAbout": [{"name": null, "path": null}], "description": "light commercial vehicle, FCEV, automobile industry, demand in million unit, exogenous data", "valueReference": []}, {"name": "exo_auto_lcv_icev", "type": "float", "unit": "Million units", "isAbout": [{"name": null, "path": null}], "description": "light commercial vehicle, ICEV, automobile industry, demand in million unit, exogenous data", "valueReference": []}, {"name": "exo_auto_pc_bev", "type": "float", "unit": "Million units", "isAbout": [{"name": null, "path": null}], "description": "passenger car, BEV, automobile industry, demand in million unit, exogenous data", "valueReference": []}, {"name": "exo_auto_pc_fcev", "type": "float", "unit": "Million units", "isAbout": [{"name": null, "path": null}], "description": "passenger car, FCEV, automobile industry, demand in million unit, exogenous data", "valueReference": []}, {"name": "exo_auto_pc_icev", "type": "float", "unit": "Million units", "isAbout": [{"name": null, "path": null}], "description": "passenger car, ICEV, automobile industry, demand in million unit, exogenous data", "valueReference": []}, {"name": "exo_auto_pc_phev", "type": "float", "unit": "Million units", "isAbout": [{"name": null, "path": null}], "description": "passenger car, PHEV, automobile industry, demand in million unit, exogenous data", "valueReference": []}, {"name": "exo_other_ind", "type": "float", "unit": "PJ", "isAbout": [{"name": null, "path": null}], "description": "other industries energy service demand, other \u00edndustries, exogeneous data", "valueReference": []}, {"name": "exo_cooling_normal", "type": "float", "unit": "PJ", "isAbout": [{"name": null, "path": null}], "description": "other industries cooling energy service demand, other \u00edndustries, exogeneous data", "valueReference": []}, {"name": "exo_space_heat", "type": "float", "unit": "PJ", "isAbout": [{"name": null, "path": null}], "description": "other industries space heat energy service demand, other \u00edndustries, exogeneous data", "valueReference": []}, {"name": "bandwidth_type", "type": "json", "unit": null, "isAbout": [], "description": "Bandwidth Type", "valueReference": []}, {"name": "version", "type": "text", "unit": null, "isAbout": [], "description": "Version", "valueReference": []}, {"name": "method", "type": "json", "unit": null, "isAbout": [], "description": "Method", "valueReference": []}, {"name": "source", "type": "json", "unit": null, "isAbout": [], "description": "Source", "valueReference": []}, {"name": "comment", "type": "json", "unit": null, "isAbout": [], "description": "Comment", "valueReference": []}], "primaryKey": ["id"], "foreignKeys": []}, "dialect": {"delimiter": ";", "decimalSeparator": "."}, "profile": "tabular-data-resource", "encoding": "UTF-8"}], "description": "Dataset describes scalar techno-economic and scenario data of technology/process: Industry scalar demand", "contributors": [{"date": "2024-07-05", "email": "md-anik.islam@ier.uni-stuttgart.de", "title": "Anik Islam", "object": "data and metadata for industry", "comment": "Created data and metadata in specific format based on provided data"}, {"date": "2024-07-05", "email": "isela.bailey@ier.uni-stuttgart.de", "title": "Isela Bailey", "object": "data and metadata for industry", "comment": "Prepared and Provided data and necessary details of cement, glass, steel, aluminium and paper industry"}], "metaMetadata": {"metadataLicense": {"name": "CC0-1.0", "path": "https://creativecommons.org/publicdomain/zero/1.0/", "title": "Creative Commons Zero v1.0 Universal"}, "metadataVersion": "OEP-1.5.2"}, "publicationDate": "2024-07-05"}
+{
+  "@context": "https://raw.githubusercontent.com/OpenEnergyPlatform/oemetadata/develop/metadata/latest/context.json",
+  "@id": null,
+  "_comment": {
+    "dates": "Dates and time must follow the ISO8601 including time zone (YYYY-MM-DD or YYYY-MM-DDThh:mm:ss\u00b1hh)",
+    "languages": "Languages must follow the IETF (BCP47) format (en-GB, en-US, de-DE)",
+    "licenses": "License name must follow the SPDX License List (https://spdx.org/licenses/)",
+    "metadata": "Metadata documentation and explanation (https://github.com/OpenEnergyPlatform/oemetadata)",
+    "null": "If not applicable use: null",
+    "review": "Following the OEP Data Review (https://github.com/OpenEnergyPlatform/data-preprocessing/blob/master/data-review/manual/review_manual.md)",
+    "todo": "If a value is not yet available, use: todo",
+    "units": "Use a space between numbers and units (100 m)"
+  },
+  "context": {
+    "contact": "ulrich.fahl@ier.uni-stuttgart.de",
+    "documentation": "https://sedos-project.github.io/.github/",
+    "fundingAgency": "Bundesministerium f\u00c3\u00bcr Wirtschaft und Klimaschutz (BMWK)",
+    "fundingAgencyLogo": "https://en.wikipedia.org/wiki/Federal_Ministry_for_Economic_Affairs_and_Climate_Action#/media/File:BMWi_Logo_2021.svg",
+    "grantNo": null,
+    "homepage": "https://sedos-project.github.io/.github/",
+    "publisherLogo": null,
+    "sourceCode": "https://github.com/sedos-project"
+  },
+  "contributors": [
+    {
+      "comment": "Created data and metadata in specific format based on provided data",
+      "date": "2024-07-05",
+      "email": "md-anik.islam@ier.uni-stuttgart.de",
+      "object": "data and metadata for industry",
+      "title": "Anik Islam"
+    },
+    {
+      "comment": "Prepared and Provided data and necessary details of cement, glass, steel, aluminium and paper industry",
+      "date": "2024-07-05",
+      "email": "isela.bailey@ier.uni-stuttgart.de",
+      "object": "data and metadata for industry",
+      "title": "Isela Bailey"
+    }
+  ],
+  "description": "Dataset describes scalar techno-economic and scenario data of technology/process: Industry scalar demand",
+  "id": "https://openenergy-platform.org/dataedit/view/model_draft/ind_scalars",
+  "keywords": [
+    "SEDOS",
+    "input_data",
+    "AP7",
+    "Industry",
+    "oedatamodel-parameter"
+  ],
+  "language": [
+    "en-GB"
+  ],
+  "licenses": [
+    {
+      "attribution": null,
+      "instruction": "You are free to: Share- copy and redistribute the material in any medium or format for any purpose, even commercially. Adapt - remix, transform, and build upon the material for any purpose, even commercially.",
+      "name": "CC-BY-4.0",
+      "path": "https://creativecommons.org/licenses/by/4.0/?ref=chooser-v1",
+      "title": "Creative Commons Attribution 4.0 International"
+    }
+  ],
+  "metaMetadata": {
+    "metadataLicense": {
+      "name": "CC0-1.0",
+      "path": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "title": "Creative Commons Zero v1.0 Universal"
+    },
+    "metadataVersion": "OEP-1.5.2"
+  },
+  "name": "ind_scalars",
+  "publicationDate": "2024-07-05",
+  "resources": [
+    {
+      "dialect": {
+        "decimalSeparator": ".",
+        "delimiter": ";"
+      },
+      "encoding": "UTF-8",
+      "format": "PostgreSQL",
+      "name": "model_draft.ind_scalars",
+      "path": "https://openenergy-platform.org/dataedit/view/model_draft/ind_scalars",
+      "profile": "tabular-data-resource",
+      "schema": {
+        "fields": [
+          {
+            "description": "Unique identifier",
+            "isAbout": [],
+            "name": "id",
+            "type": "bigint",
+            "unit": null,
+            "valueReference": []
+          },
+          {
+            "description": "Country or regionx",
+            "isAbout": [],
+            "name": "region",
+            "type": "text",
+            "unit": null,
+            "valueReference": []
+          },
+          {
+            "description": "Year",
+            "isAbout": [],
+            "name": "year",
+            "type": "integer",
+            "unit": "a",
+            "valueReference": []
+          },
+          {
+            "description": "Type of process",
+            "isAbout": [],
+            "name": "type",
+            "type": "text",
+            "unit": null,
+            "valueReference": []
+          },
+          {
+            "description": "aluiminum,  aluiminum industry, demand in million ton, exogeneous data",
+            "isAbout": [
+              {
+                "name": null,
+                "path": null
+              }
+            ],
+            "name": "exo_aluminum",
+            "type": "float",
+            "unit": "Mt",
+            "valueReference": []
+          },
+          {
+            "description": "cement,cement industry, demand in million ton, exogeneous data",
+            "isAbout": [
+              {
+                "name": null,
+                "path": null
+              }
+            ],
+            "name": "exo_cement",
+            "type": "float",
+            "unit": "Mt",
+            "valueReference": []
+          },
+          {
+            "description": "copper, copper industry, demand in million ton, exogeneous data",
+            "isAbout": [
+              {
+                "name": null,
+                "path": null
+              }
+            ],
+            "name": "exo_copper",
+            "type": "float",
+            "unit": "Mt",
+            "valueReference": []
+          },
+          {
+            "description": "glass flat, glass industry, demand in million ton, exogeneous data",
+            "isAbout": [
+              {
+                "name": null,
+                "path": null
+              }
+            ],
+            "name": "exo_glass_flat",
+            "type": "float",
+            "unit": "Mt",
+            "valueReference": []
+          },
+          {
+            "description": "glass hollow, glass industry, demand in million ton, exogeneous data",
+            "isAbout": [
+              {
+                "name": null,
+                "path": null
+              }
+            ],
+            "name": "exo_glass_cont",
+            "type": "float",
+            "unit": "Mt",
+            "valueReference": []
+          },
+          {
+            "description": "glass fiber, glass industry, demand in million ton, exogeneous data",
+            "isAbout": [
+              {
+                "name": null,
+                "path": null
+              }
+            ],
+            "name": "exo_glass_fibe",
+            "type": "float",
+            "unit": "Mt",
+            "valueReference": []
+          },
+          {
+            "description": "glass special, glass industry, demand in million ton, exogeneous data",
+            "isAbout": [
+              {
+                "name": null,
+                "path": null
+              }
+            ],
+            "name": "exo_glass_spec",
+            "type": "float",
+            "unit": "Mt",
+            "valueReference": []
+          },
+          {
+            "description": "steel demand, steel industry, demand in million ton, exogeneous data",
+            "isAbout": [
+              {
+                "name": null,
+                "path": null
+              }
+            ],
+            "name": "exo_steel",
+            "type": "float",
+            "unit": "Mt",
+            "valueReference": []
+          },
+          {
+            "description": "paper high quality, paper industry, demand in million ton, exogeneous data",
+            "isAbout": [
+              {
+                "name": null,
+                "path": null
+              }
+            ],
+            "name": "exo_paper_hq",
+            "type": "float",
+            "unit": "Mt",
+            "valueReference": []
+          },
+          {
+            "description": "paper low quality, paper industry, demand in million ton, exogeneous data",
+            "isAbout": [
+              {
+                "name": null,
+                "path": null
+              }
+            ],
+            "name": "exo_paper_lq",
+            "type": "float",
+            "unit": "Mt",
+            "valueReference": []
+          },
+          {
+            "description": "Livestocks, agriculture, exogeneous data",
+            "isAbout": [
+              {
+                "name": null,
+                "path": null
+              }
+            ],
+            "name": "exo_agri_livestock",
+            "type": "float",
+            "unit": "Million units",
+            "valueReference": []
+          },
+          {
+            "description": "aromatics(btx), chemical industry, demand in million ton, exogeneous data",
+            "isAbout": [
+              {
+                "name": null,
+                "path": null
+              }
+            ],
+            "name": "exo_chemi_btx",
+            "type": "float",
+            "unit": "Mt",
+            "valueReference": []
+          },
+          {
+            "description": "other chemicals, chemical industry, energy service demand, exogeneous data",
+            "isAbout": [
+              {
+                "name": null,
+                "path": null
+              }
+            ],
+            "name": "exo_chemi_others",
+            "type": "float",
+            "unit": "PJ",
+            "valueReference": []
+          },
+          {
+            "description": "Cl2, chemical industry, demand in million ton, exogeneous data",
+            "isAbout": [
+              {
+                "name": null,
+                "path": null
+              }
+            ],
+            "name": "exo_chemi_cl2",
+            "type": "float",
+            "unit": "Mt",
+            "valueReference": []
+          },
+          {
+            "description": "methanol, chemical industry, demand in million ton, exogeneous data",
+            "isAbout": [
+              {
+                "name": null,
+                "path": null
+              }
+            ],
+            "name": "exo_chemi_methanol",
+            "type": "float",
+            "unit": "Mt",
+            "valueReference": []
+          },
+          {
+            "description": "NH3, chemical industry, demand in million ton, exogeneous data",
+            "isAbout": [
+              {
+                "name": null,
+                "path": null
+              }
+            ],
+            "name": "exo_chemi_nh3",
+            "type": "float",
+            "unit": "Mt",
+            "valueReference": []
+          },
+          {
+            "description": "olefins, chemical industry, demand in million ton, exogeneous data",
+            "isAbout": [
+              {
+                "name": null,
+                "path": null
+              }
+            ],
+            "name": "exo_chemi_olefins",
+            "type": "float",
+            "unit": "Mt",
+            "valueReference": []
+          },
+          {
+            "description": "heavy commercial vehicle, BEV, automobile industry, demand in million unit, exogenous data",
+            "isAbout": [
+              {
+                "name": null,
+                "path": null
+              }
+            ],
+            "name": "exo_auto_hcv_bev",
+            "type": "float",
+            "unit": "Million units",
+            "valueReference": []
+          },
+          {
+            "description": "heavy commercial vehicle, FCEV, automobile industry, demand in million unit, exogenous data",
+            "isAbout": [
+              {
+                "name": null,
+                "path": null
+              }
+            ],
+            "name": "exo_auto_hcv_fcev",
+            "type": "float",
+            "unit": "Million units",
+            "valueReference": []
+          },
+          {
+            "description": "heavy commercial vehicle, ICEV, automobile industry, demand in million unit, exogenous data",
+            "isAbout": [
+              {
+                "name": null,
+                "path": null
+              }
+            ],
+            "name": "exo_auto_hcv_icev",
+            "type": "float",
+            "unit": "Million units",
+            "valueReference": []
+          },
+          {
+            "description": "light commercial vehicle, BEV, automobile industry, demand in million unit, exogenous data",
+            "isAbout": [
+              {
+                "name": null,
+                "path": null
+              }
+            ],
+            "name": "exo_auto_lcv_bev",
+            "type": "float",
+            "unit": "Million units",
+            "valueReference": []
+          },
+          {
+            "description": "light commercial vehicle, FCEV, automobile industry, demand in million unit, exogenous data",
+            "isAbout": [
+              {
+                "name": null,
+                "path": null
+              }
+            ],
+            "name": "exo_auto_lcv_fcev",
+            "type": "float",
+            "unit": "Million units",
+            "valueReference": []
+          },
+          {
+            "description": "light commercial vehicle, ICEV, automobile industry, demand in million unit, exogenous data",
+            "isAbout": [
+              {
+                "name": null,
+                "path": null
+              }
+            ],
+            "name": "exo_auto_lcv_icev",
+            "type": "float",
+            "unit": "Million units",
+            "valueReference": []
+          },
+          {
+            "description": "passenger car, BEV, automobile industry, demand in million unit, exogenous data",
+            "isAbout": [
+              {
+                "name": null,
+                "path": null
+              }
+            ],
+            "name": "exo_auto_pc_bev",
+            "type": "float",
+            "unit": "Million units",
+            "valueReference": []
+          },
+          {
+            "description": "passenger car, FCEV, automobile industry, demand in million unit, exogenous data",
+            "isAbout": [
+              {
+                "name": null,
+                "path": null
+              }
+            ],
+            "name": "exo_auto_pc_fcev",
+            "type": "float",
+            "unit": "Million units",
+            "valueReference": []
+          },
+          {
+            "description": "passenger car, ICEV, automobile industry, demand in million unit, exogenous data",
+            "isAbout": [
+              {
+                "name": null,
+                "path": null
+              }
+            ],
+            "name": "exo_auto_pc_icev",
+            "type": "float",
+            "unit": "Million units",
+            "valueReference": []
+          },
+          {
+            "description": "passenger car, PHEV, automobile industry, demand in million unit, exogenous data",
+            "isAbout": [
+              {
+                "name": null,
+                "path": null
+              }
+            ],
+            "name": "exo_auto_pc_phev",
+            "type": "float",
+            "unit": "Million units",
+            "valueReference": []
+          },
+          {
+            "description": "other industries energy service demand, other \u00edndustries, exogeneous data",
+            "isAbout": [
+              {
+                "name": null,
+                "path": null
+              }
+            ],
+            "name": "exo_other_ind",
+            "type": "float",
+            "unit": "PJ",
+            "valueReference": []
+          },
+          {
+            "description": "other industries cooling energy service demand, other \u00edndustries, exogeneous data",
+            "isAbout": [
+              {
+                "name": null,
+                "path": null
+              }
+            ],
+            "name": "exo_cooling_normal",
+            "type": "float",
+            "unit": "PJ",
+            "valueReference": []
+          },
+          {
+            "description": "other industries space heat energy service demand, other \u00edndustries, exogeneous data",
+            "isAbout": [
+              {
+                "name": null,
+                "path": null
+              }
+            ],
+            "name": "exo_space_heat",
+            "type": "float",
+            "unit": "PJ",
+            "valueReference": []
+          },
+          {
+            "description": "Bandwidth Type",
+            "isAbout": [],
+            "name": "bandwidth_type",
+            "type": "json",
+            "unit": null,
+            "valueReference": []
+          },
+          {
+            "description": "Version",
+            "isAbout": [],
+            "name": "version",
+            "type": "text",
+            "unit": null,
+            "valueReference": []
+          },
+          {
+            "description": "Method",
+            "isAbout": [],
+            "name": "method",
+            "type": "json",
+            "unit": null,
+            "valueReference": []
+          },
+          {
+            "description": "Source",
+            "isAbout": [],
+            "name": "source",
+            "type": "json",
+            "unit": null,
+            "valueReference": []
+          },
+          {
+            "description": "Comment",
+            "isAbout": [],
+            "name": "comment",
+            "type": "json",
+            "unit": null,
+            "valueReference": []
+          }
+        ],
+        "foreignKeys": [],
+        "primaryKey": [
+          "id"
+        ]
+      }
+    }
+  ],
+  "review": {
+    "badge": null,
+    "path": null
+  },
+  "sources": [
+    {
+      "description": "Parameter data model for secondary input scalars and timeseries",
+      "licenses": [
+        {
+          "attribution": null,
+          "instruction": "You are free: To Share, To Create, To Adapt",
+          "name": "CC0-1.0",
+          "path": "https://creativecommons.org/publicdomain/zero/1.0/legalcode",
+          "title": "Creative Commons Zero v1.0 Universal"
+        }
+      ],
+      "path": "https://github.com/sedos-project/oedatamodel/tree/main/oedatamodel-parameter",
+      "title": "OEDatamodel-parameter"
+    },
+    {
+      "description": "TAM Industry is based on TIMES and focuses on German industry energy system",
+      "licenses": [
+        {
+          "attribution": "@Energy Economics and Social Analysis(ESA), IER, University of Stuttgart",
+          "instruction": null,
+          "name": "Creative Commons Attribution 4.0 International",
+          "path": "https://creativecommons.org/licenses/by/4.0/",
+          "title": "CC BY 4.0"
+        }
+      ],
+      "path": null,
+      "title": "TAM Industry Model"
+    }
+  ],
+  "spatial": {
+    "extent": "DE",
+    "location": "Germany",
+    "resolution": "NUTS-0"
+  },
+  "subject": [
+    {
+      "name": "Industry Sector",
+      "path": "http://openenergy-platform.org/ontology/oeo/OEO_00000227/"
+    },
+    {
+      "name": "Industry Sub-sector",
+      "path": "http://openenergy-platform.org/ontology/oeo/OEO_00000227"
+    }
+  ],
+  "temporal": {
+    "referenceDate": "2021",
+    "timeseries": [
+      {
+        "aggregationType": null,
+        "alignment": null,
+        "end": "2070-12-31",
+        "resolution": "yearly",
+        "start": "2021-01-01"
+      }
+    ]
+  },
+  "title": "sedos_ind_scalars"
+}
