@@ -10,10 +10,11 @@ from oemof.solph import Model, processing
 from oemof.solph._energy_system import EnergySystem
 from oemof.solph.buses import Bus
 from oemof.tabular.datapackage import building  # noqa F401
-from oemof.tabular.datapackage.reading import (deserialize_constraints,
-                                               deserialize_energy_system)
-from oemof.tabular.facades import (Commodity, Conversion, Excess, Load,
-                                   Storage, Volatile)
+from oemof.tabular.datapackage.reading import (
+    deserialize_constraints,
+    deserialize_energy_system,
+)
+from oemof.tabular.facades import Commodity, Conversion, Excess, Load, Storage, Volatile
 from oemof_industry.mimo_converter import MIMO
 
 logger = logging.getLogger()
@@ -37,10 +38,9 @@ Also adjust Modelstructure:
         - red marked lines in ProcessO1 (not yet uploaded or deleted data)
 """
 
-# from data_adapter.databus import download_collection
-# download_collection(
-#          "https://databus.openenergyplatform.org/felixmaur/collections/steel_industry_test/"
-#      )
+download_collection(
+    "https://databus.openenergyplatform.org/felixmaur/collections/steel_industry_test/"
+)
 logger.info("Reading Structure")
 structure = Structure(
     "SEDOS_Modellstruktur",
@@ -50,7 +50,7 @@ structure = Structure(
 )
 
 adapter = Adapter(
-    "steel_industry_test",
+    "steel_industry_test_modified",
     structure=structure,
 )
 
@@ -211,19 +211,11 @@ parameter_map = {
         "capacity_cost": "cost_inv_w",
         "fixed_costs": "cost_fix_w",
     },
-    "x2x_p2gas_biom_1": {
-        "capacity_cost": "cost_inv_w",
-        "fixed_costs": "cost_fix_w",
-    },
     "x2x_p2gas_pemec_1": {
         "capacity_cost": "cost_inv_w",
         "fixed_costs": "cost_fix_w",
     },
     "x2x_p2gas_biom_1": {
-        "capacity_cost": "cost_inv_w",
-        "fixed_costs": "cost_fix_w",
-    },
-    "x2x_p2gas_pemec_1": {
         "capacity_cost": "cost_inv_w",
         "fixed_costs": "cost_fix_w",
     },
@@ -246,7 +238,6 @@ parameter_map = {
     },
     "x2x_storage_hydrogen_lohc_1": {
         "efficiency": "efficiency_sto_in",
-        "fixed_costs": "cost_fix_w",
         "loss_rate": "sto_self_discharge",
         "storage_capacity_cost": "cost_inv_e",
         "fixed_costs": "cost_fix_p",
@@ -254,7 +245,6 @@ parameter_map = {
     },
     "x2x_storage_hydrogen_new_1": {
         "efficiency": "efficiency_sto_in",
-        "fixed_costs": "cost_fix_w",
         "loss_rate": "sto_self_discharge",
         "storage_capacity_cost": "cost_inv_e",
         "fixed_costs": "cost_fix_p",
@@ -266,7 +256,6 @@ parameter_map = {
         "fixed_costs": "cost_fix_p",
         "loss_rate": "sto_self_discharge",
         "storage_capacity_cost": "cost_inv_e",
-        "fixed_costs": "cost_fix_p",
         "marginal_cost": "cost_var_e",
         "capacity_capacity_potential": "capacity_e_max",
         "storage_capacity": "capacity_e_inst",
@@ -295,11 +284,6 @@ dp = DataPackage.build_datapackage(
 datapackage_path = pathlib.Path(__file__).parent / "datapackage"
 dp.save_datapackage_to_csv(str(datapackage_path))
 
-
-"""
-Changes done to the datapackage after creation:
-    - Set nominal value (amount) in helper_sink_exo_steel to number only (adjust type in datapackage.json as well)
-"""
 
 logger.info("Building EnergySystem")
 es = EnergySystem.from_datapackage(
