@@ -9,7 +9,7 @@ Models steel industry with the SEDOS reference dataset.
 To install steel_industry, follow these steps:
 
 * git-clone steel_industry into local folder:
-  `git clone https://github.com/rl-institut/data_adapter_oemof.git
+  `git clone https://github.com/sedos-project/steel_industry.git`
 * enter folder `cd steel_industry`
 * create virtual environment using conda: `conda env create -f environment.yml`
 * activate environment: `conda activate steel_industry`
