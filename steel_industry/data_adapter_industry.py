@@ -18,6 +18,7 @@ from oemof.tabular.facades import Commodity, Conversion, Excess, Load, Storage, 
 from oemof_industry.mimo_converter import MIMO
 
 logger = logging.getLogger()
+logging.basicConfig(level=logging.INFO)
 
 EnergySystem.from_datapackage = classmethod(deserialize_energy_system)
 
