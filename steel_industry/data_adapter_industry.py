@@ -59,7 +59,8 @@ download_collection(
 
 logger.info("Reading Structure")
 structure = Structure(
-    "SEDOS_Modellstruktur_sh_test_steel_repo",
+    # "SEDOS_Modellstruktur_sh_test_steel_repo",
+    "SEDOS_Modellstruktur_sh_for_hh",
     # "SEDOS_Modellstruktur",
     process_sheet="Processes_O1",
     parameter_sheet="Parameter_Input-Output",
