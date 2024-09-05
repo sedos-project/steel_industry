@@ -67,7 +67,8 @@ structure = Structure(
 )
 
 adapter = Adapter(
-    "steel_industry_test_modified",
+    "steel_industry_test",
+    # "steel_industry_test_modified",
     structure=structure,
 )
 
