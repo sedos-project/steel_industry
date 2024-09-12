@@ -1,5 +1,6 @@
 import logging
 import pathlib
+import shutil
 
 import pandas as pd
 from data_adapter.databus import download_collection  # noqa
@@ -93,6 +94,8 @@ dp = DataPackage.build_datapackage(
     debug=DEBUG,  # set DEBUG to False for full run. DEBUG reduces to 5 time steps per period
 )
 datapackage_path = pathlib.Path(__file__).parent / "datapackage"
+# delete datapackage before saving it as otherwise old elements are kept
+shutil.rmtree(datapackage_path)
 dp.save_datapackage_to_csv(str(datapackage_path))
 
 
