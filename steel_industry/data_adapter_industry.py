@@ -40,17 +40,10 @@ DEBUG = True  # set to False for full run. DEBUG reduces to 5 time steps per per
 """
 Download Collection
 
-Some datasets must be adjusted due to wrong formatting in comments
-    - x2x_import_hydrogen_renewable
-    - x2x_p2gas_aec_1
-    - x2x_p2gas_pemec_1
-    - x2x_x2gas_mpyr_1
-
-
 Also adjust Modelstructure:
     Delete lines:
         - helper sinks in HelperO1
-        - red marked lines in ProcessO1 (not yet uploaded or deleted data)
+        - red marked lines in ProcessO1 and Helper_O1(not yet uploaded or deleted data)
 """
 
 download_collection(
