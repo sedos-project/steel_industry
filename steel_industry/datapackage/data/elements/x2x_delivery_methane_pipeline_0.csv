@@ -1,0 +1,2 @@
+type;carrier;tech;capacity;region;year;from_bus;to_bus;output_parameters;name
+conversion;carrier;tech;3624000.0;DE;[2021, 2024, 2027, 2030, 2035, 2040, 2045, 2050, 2060, 2070];ch4;electricity;{'max': array([1.  , 0.95, 0.9 , 0.8 , 0.75, 0.6 , 0.2 , 0.05, 0.05, 0.05])};x2x_delivery_methane_pipeline_0--0
