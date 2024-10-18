@@ -1,5 +1,6 @@
 import logging
 import pathlib
+import shutil
 
 import pandas as pd
 from data_adapter.databus import download_collection  # noqa
@@ -40,17 +41,10 @@ DEBUG = True  # set to False for full run. DEBUG reduces to 5 time steps per per
 """
 Download Collection
 
-Some datasets must be adjusted due to wrong formatting in comments
-    - x2x_import_hydrogen_renewable
-    - x2x_p2gas_aec_1
-    - x2x_p2gas_pemec_1
-    - x2x_x2gas_mpyr_1
-
-
 Also adjust Modelstructure:
     Delete lines:
         - helper sinks in HelperO1
-        - red marked lines in ProcessO1 (not yet uploaded or deleted data)
+        - red marked lines in ProcessO1 and Helper_O1(not yet uploaded or deleted data)
 """
 
 download_collection(
@@ -101,6 +95,8 @@ dp = DataPackage.build_datapackage(
     debug=DEBUG,  # set DEBUG to False for full run. DEBUG reduces to 5 time steps per period
 )
 datapackage_path = pathlib.Path(__file__).parent / "datapackage"
+# delete datapackage before saving it as otherwise old elements are kept
+shutil.rmtree(datapackage_path)
 dp.save_datapackage_to_csv(str(datapackage_path))
 
 
