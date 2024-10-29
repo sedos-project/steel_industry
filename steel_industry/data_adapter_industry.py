@@ -68,7 +68,7 @@ adapter = Adapter(
     structure=structure,
 )
 
-logger.info("Building Adapter Map")
+logger.info("\nBuilding Adapter Map")
 
 # create dictionary with all found in- and outputs
 process_adapter_map = pd.concat(
@@ -88,7 +88,7 @@ process_adapter_map = pd.concat(
     ]
 ).to_dict(orient="dict")["facade adapter (oemof)"]
 
-logger.info("Building datapackage...")
+logger.info("\nBuilding datapackage...")
 dp = DataPackage.build_datapackage(
     adapter=adapter,
     process_adapter_map=process_adapter_map,
@@ -97,12 +97,14 @@ dp = DataPackage.build_datapackage(
     bus_map=load_yaml(Path(__file__).parent / "mappings" / "BUS_MAP.yaml"),
 )
 datapackage_path = pathlib.Path(__file__).parent / "datapackage"
+
 # delete datapackage before saving it as otherwise old elements are kept
 shutil.rmtree(datapackage_path)
+
 dp.save_datapackage_to_csv(str(datapackage_path))
 
 
-logger.info("Building EnergySystem")
+logger.info("\nBuilding EnergySystem")
 es = EnergySystem.from_datapackage(
     path="datapackage/datapackage.json",
     typemap={
@@ -119,9 +121,9 @@ es = EnergySystem.from_datapackage(
     },
 )
 
-logger.info("Building Model...")
+logger.info("\nBuilding Model...")
 m = Model(es)
-logger.info("Solving Model...")
+logger.info("\nSolving Model...")
 m.solve(solver="cbc")
 logger.warning(m.solver_results["Solver"][0]["Termination condition"])
 print(m.solver_results["Solver"][0]["Termination condition"])
