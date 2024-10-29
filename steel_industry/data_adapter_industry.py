@@ -1,12 +1,14 @@
 import logging
 import pathlib
 import shutil
+from pathlib import Path
 
 import pandas as pd
 from data_adapter.databus import download_collection  # noqa
 from data_adapter.preprocessing import Adapter  # noqa: E402
 from data_adapter.structure import Structure  # noqa: E402
 from data_adapter_oemof.build_datapackage import DataPackage  # noqa: E402
+from data_adapter_oemof.utils import load_yaml
 from oemof.solph import Model, processing
 from oemof.solph._energy_system import EnergySystem
 from oemof.solph.buses import Bus
@@ -92,6 +94,7 @@ dp = DataPackage.build_datapackage(
     process_adapter_map=process_adapter_map,
     parameter_map=PARAMETER_MAP_STEEL,
     debug=DEBUG,  # set DEBUG to False for full run. DEBUG reduces to 5 time steps per period
+    bus_map=load_yaml(Path(__file__).parent / "mappings" / "BUS_MAP.yaml"),
 )
 datapackage_path = pathlib.Path(__file__).parent / "datapackage"
 # delete datapackage before saving it as otherwise old elements are kept
