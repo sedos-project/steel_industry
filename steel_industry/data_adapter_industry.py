@@ -53,7 +53,7 @@ download_collection(
     "https://databus.openenergyplatform.org/felixmaur/collections/steel_industry_test/"
 )
 
-logger.info("Reading Structure")
+logger.info("Reading Structure\n")
 structure = Structure(
     "SEDOS_Modellstruktur_sh_test_steel_repo",
     # "SEDOS_Modellstruktur",
@@ -68,7 +68,7 @@ adapter = Adapter(
     structure=structure,
 )
 
-logger.info("\nBuilding Adapter Map")
+logger.info("Building Adapter Map\n")
 
 # create dictionary with all found in- and outputs
 process_adapter_map = pd.concat(
@@ -88,7 +88,7 @@ process_adapter_map = pd.concat(
     ]
 ).to_dict(orient="dict")["facade adapter (oemof)"]
 
-logger.info("\nBuilding datapackage...")
+logger.info("Building datapackage...\n")
 dp = DataPackage.build_datapackage(
     adapter=adapter,
     process_adapter_map=process_adapter_map,
@@ -104,7 +104,7 @@ shutil.rmtree(datapackage_path)
 dp.save_datapackage_to_csv(str(datapackage_path))
 
 
-logger.info("\nBuilding EnergySystem")
+logger.info("Building EnergySystem\n")
 es = EnergySystem.from_datapackage(
     path="datapackage/datapackage.json",
     typemap={
@@ -121,12 +121,17 @@ es = EnergySystem.from_datapackage(
     },
 )
 
-logger.info("\nBuilding Model...")
+logger.info("Building Model...\n")
 m = Model(es)
-logger.info("\nSolving Model...")
+logger.info("Solving Model...\n")
 m.solve(solver="cbc")
-logger.warning(m.solver_results["Solver"][0]["Termination condition"])
-print(m.solver_results["Solver"][0]["Termination condition"])
+
+termination_condition = m.solver_results["Solver"][0]["Termination condition"]
+if m.solver_results["Solver"][0]["Termination condition"] == "infeasible":
+    logger.warning(f"termination condition is '{termination_condition}'\n")
+else:
+    logging.info(f"Problem solved. (termination condition '{termination_condition}')\n")
+
 logger.info("Reading Results")
 results = processing.results(m)
 logger.info("Writing Results and Goodbye :)")
