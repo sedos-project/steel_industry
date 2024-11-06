@@ -23,7 +23,7 @@ PARAMETER_MAP_STEEL = {
     "ind_steel_casting_0": {"capacity": "capacity_w_inst_0"},
     "ind_steel_elefu_0": {"capacity": "capacity_w_inst_0"},
     "x2x_delivery_methane_pipeline_0": {
-        "capacity": "capacity_p_max",
+        "capacity": "capacity_p_inst",
         "marginal_cost": "cost_var_p",
     },
     "x2x_x2gas_sr_syngas_0": {
