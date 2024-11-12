@@ -1,2 +1,0 @@
-type;carrier;tech;region;year;from_bus_0;to_bus_0;to_bus_1;name;groups
-mimo;carrier;tech;DE;[2021, 2024, 2027, 2030, 2035, 2040, 2045, 2050, 2060, 2070];generic_commodity;sec_biogas;emi_co2_neg_imp;x2x_import_biogas--23;{}

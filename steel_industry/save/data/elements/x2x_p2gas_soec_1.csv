@@ -1,2 +1,0 @@
-type;carrier;tech;region;year;from_bus;to_bus;name
-conversion;carrier;tech;DE;[2021, 2024, 2027, 2030, 2035, 2040, 2045, 2050, 2060, 2070];ch4;electricity;x2x_p2gas_soec_1--33
