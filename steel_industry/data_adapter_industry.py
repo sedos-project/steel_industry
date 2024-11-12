@@ -28,8 +28,10 @@ from oemof.tabular.facades import (
     CommodityGHG,
 )
 from oemof_industry.mimo_converter import MIMO
+from oemof_industry.emission_constraint import CO2EmissionLimit
 
 from steel_industry.parameter_map import PARAMETER_MAP_STEEL
+from steel_industry import postprocessing
 
 logger = logging.getLogger()
 logging.basicConfig(level=logging.INFO)
@@ -132,8 +134,15 @@ if m.solver_results["Solver"][0]["Termination condition"] == "infeasible":
 else:
     logging.info(f"Problem solved. (termination condition '{termination_condition}')\n")
 
-logger.info("Reading Results")
-results = postprocessing.get_results(m)
-params = postprocessing.get_inputs(m)
-
+logger.info("Processing Results")
+es.results = postprocessing.get_results(m)
+es.params = postprocessing.get_inputs(m)
+# dump energy system to read results again
+es.dump(es_dump_path)
+else:
+es = EnergySystem()
+es.restore(es_dump_path)
+# process and save results
+file_name = pathlib.Path(__file__).parent / "results" / "test" / "results.csv"
+postprocessing.process_results(es, file_name)
 logger.info("Writing Results and Goodbye :)")

@@ -1,5 +1,7 @@
+import pandas as pd
+
 from oemof.solph import processing
-from oemof.tabular.postprocessing import calculations
+from oemof.tabular.postprocessing import calculations, core, naming
 
 
 def get_results(model):
@@ -28,5 +30,8 @@ def get_inputs(model):
                          f"`com_data = process_component_data(com_data)`")
     return inputs
 
-# def process_results
 
+def process_results(es, file_name):
+    scalars = calculations.run_postprocessing(es)
+
+    all_scalars.to_csv(file_name)
