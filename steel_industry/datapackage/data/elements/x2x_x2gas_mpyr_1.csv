@@ -1,2 +1,0 @@
-type;carrier;tech;marginal_cost;capacity_cost;region;year;from_bus;to_bus;name
-conversion;carrier;tech;[nan, nan, nan, 4.6, 4.4, 4.2, 3.85, 3.5, 3.5, 3.5];[nan, nan, nan, 2014000.0, 2014000.0, 2014000.0, 2014000.0, 1261000.0, 1261000.0, 1261000.0];DE;[2021, 2024, 2027, 2030, 2035, 2040, 2045, 2050, 2060, 2070];ch4;electricity;x2x_x2gas_mpyr_1--29
