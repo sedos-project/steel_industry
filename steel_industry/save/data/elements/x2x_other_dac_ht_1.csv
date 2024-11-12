@@ -1,2 +1,0 @@
-type;carrier;tech;marginal_cost;capacity_cost;region;year;from_bus;to_bus;name
-conversion;carrier;tech;[5.2, 5.2, 5.0, 5.0, 5.0, 5.0, 5.0, 5.0, 5.0, 5.0];[718.5, 590.49, 462.48, 334.47, 284.92, 235.37, 216.79, 136.27, 136.27, 136.27];DE;[2021, 2024, 2027, 2030, 2035, 2040, 2045, 2050, 2060, 2070];ch4;electricity;x2x_other_dac_ht_1--27

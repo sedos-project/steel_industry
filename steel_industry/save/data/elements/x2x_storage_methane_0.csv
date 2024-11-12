@@ -1,2 +1,0 @@
-type;carrier;tech;storage_capacity_cost;lifetime;fixed_costs;marginal_cost;efficiency;region;year;bus;name
-storage;carrier;tech;257.1257;40;1.38024696;0.0;99.0;DE;[2021, 2024, 2027, 2030, 2035, 2040, 2045, 2050, 2060, 2070];sec_methane;x2x_storage_methane_0--37

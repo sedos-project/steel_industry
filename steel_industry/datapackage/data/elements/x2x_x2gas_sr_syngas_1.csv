@@ -1,2 +1,0 @@
-type;carrier;tech;region;year;lifetime;capacity_cost;from_bus_0;from_bus_1;to_bus_0;name;groups;conversion_factor_sec_methane;conversion_factor_sec_elec;conversion_factor_sec_syngas_sr
-mimo;carrier;tech;DE;[2021, 2024, 2027, 2030, 2035, 2040, 2045, 2050, 2060, 2070];25;579393.0;sec_methane;sec_elec;sec_syngas_sr;x2x_x2gas_sr_syngas_1--30;{};1.0;0.03;0.82

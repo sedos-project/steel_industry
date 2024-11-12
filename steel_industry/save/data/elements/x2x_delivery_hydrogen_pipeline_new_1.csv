@@ -1,2 +1,0 @@
-type;carrier;tech;capacity_cost;region;year;from_bus;to_bus;name
-conversion;carrier;tech;[nan, nan, nan, nan, nan, 70661.0, 70661.0, 70661.0, 70661.0, 70661.0];DE;[2021, 2024, 2027, 2030, 2035, 2040, 2045, 2050, 2060, 2070];ch4;electricity;x2x_delivery_hydrogen_pipeline_new_1--18

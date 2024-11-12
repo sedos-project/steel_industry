@@ -42,14 +42,6 @@ Model.add_constraints_from_datapackage = deserialize_constraints
 
 DEBUG = True  # set to False for full run. DEBUG reduces to 5 time steps per period
 
-"""
-Download Collection
-
-Also adjust Modelstructure:
-    Delete lines:
-        - helper sinks in HelperO1
-        - red marked lines in ProcessO1 and Helper_O1(not yet uploaded or deleted data)
-"""
 
 download_collection(
     "https://databus.openenergyplatform.org/felixmaur/collections/steel_industry_test/"
@@ -57,8 +49,7 @@ download_collection(
 
 logger.info("Reading Structure\n")
 structure = Structure(
-    "SEDOS_Modellstruktur_sh_test_steel_repo",
-    # "SEDOS_Modellstruktur",
+    "SEDOS_Modellstruktur",
     process_sheet="Processes_O1",
     parameter_sheet="Parameter_Input-Output",
     helper_sheet="Helper_O1",
@@ -66,29 +57,17 @@ structure = Structure(
 
 adapter = Adapter(
     "steel_industry_test",
-    # "steel_industry_test_modified",
     structure=structure,
 )
 
 logger.info("Building Adapter Map\n")
 
 # create dictionary with all found in- and outputs
+processes = pd.read_excel(io=structure.structure_file, sheet_name="Processes_O1", usecols=("process", "facade adapter (oemof)"), index_col="process")
+helper_processes = pd.read_excel(io=structure.structure_file, sheet_name="Helper_O1", usecols=("process", "facade adapter (oemof)"), index_col="process")
 process_adapter_map = pd.concat(
-    [
-        pd.read_excel(
-            io=structure.structure_file,
-            sheet_name="Processes_O1",
-            usecols=("process", "facade adapter (oemof)"),
-            index_col="process",
-        ),
-        pd.read_excel(
-            io=structure.structure_file,
-            sheet_name="Helper_O1",
-            usecols=("process", "facade adapter (oemof)"),
-            index_col="process",
-        ),
-    ]
-).to_dict(orient="dict")["facade adapter (oemof)"]
+    [processes, helper_processes]
+        ).to_dict(orient="dict")["facade adapter (oemof)"]
 
 logger.info("Building datapackage...\n")
 dp = DataPackage.build_datapackage(

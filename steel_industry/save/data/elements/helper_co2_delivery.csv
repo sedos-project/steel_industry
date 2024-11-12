@@ -1,2 +1,0 @@
-type;carrier;tech;region;year;from_bus_0;from_bus_1;from_bus_2;to_bus_0;name;groups;conversion_factor_emi_co2_reusable;conversion_factor_emi_co2_neg_fuel_cc;conversion_factor_emi_co2_neg_proc_cc
-mimo;carrier;tech;DE;[2021, 2024, 2027, 2030, 2035, 2040, 2045, 2050, 2060, 2070];emi_co2_neg_air_dacc;emi_co2_neg_fuel_cc;emi_co2_neg_proc_cc;emi_co2_reusable;helper_co2_delivery--43;"{""group_0"": [""emi_co2_neg_air_dacc"", ""emi_co2_neg_fuel_cc"", ""emi_co2_neg_proc_cc""]}";1.0;1.0;1.0

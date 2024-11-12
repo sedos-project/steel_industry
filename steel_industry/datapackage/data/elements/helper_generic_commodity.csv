@@ -1,2 +1,0 @@
-type;carrier;amount;region;year;bus;name
-commodity;generic_commodity;9999999;De;[2021, 2024, 2027, 2030, 2035, 2040, 2045, 2050, 2060, 2070];generic_commodity;helper_generic_commodity--35
