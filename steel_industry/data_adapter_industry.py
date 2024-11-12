@@ -133,5 +133,7 @@ else:
     logging.info(f"Problem solved. (termination condition '{termination_condition}')\n")
 
 logger.info("Reading Results")
-results = processing.results(m)
+results = postprocessing.get_results(m)
+params = postprocessing.get_inputs(m)
+
 logger.info("Writing Results and Goodbye :)")
