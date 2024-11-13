@@ -44,6 +44,7 @@ DEBUG = True  # set to False for full run. DEBUG reduces to 5 time steps per per
 READ_DUMP = False
 
 if DEBUG:
+    logging.info("Simulation running in debug mode. Set DEBUG to False for full simulation.")
     es_dump_path = pathlib.Path(__file__).parent / "results" / "energysystem"
 else:
     es_dump_path = pathlib.Path(__file__).parent / "results" / "energysystem_full"
@@ -129,6 +130,8 @@ if not READ_DUMP:
     # dump energy system to read results again
     es.dump(es_dump_path)
 else:
+    logging.warning(
+        "Simulation results are restored from dump. Set READ_DUMP to False for a new simulation.")
     es = EnergySystem()
     es.restore(es_dump_path)
 

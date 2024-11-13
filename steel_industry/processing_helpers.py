@@ -19,8 +19,10 @@ def process_component_data(component_data):
         key: value for key, value in component_data["sequences"].items() if "group_" not in key
     }
     # all sequences have to be of the same length
-    if len(set(
-            {key: value for key, value in component_data["sequences"].items()})) > 1:
+    length_dict = {key: len(value) for key, value in component_data["sequences"].items()}
+    if bool(length_dict):
+        print(f"Amount of time steps per perameter: {length_dict}")
+    if len(set(length_dict.values())) > 1:
         max_length = max(
             len(value) for value in component_data["sequences"].values())
         for key, value in component_data["sequences"].items():
