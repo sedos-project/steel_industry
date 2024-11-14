@@ -1,4 +1,5 @@
 import logging
+import pandas as pd
 
 
 def process_component_data(component_data):
@@ -21,7 +22,7 @@ def process_component_data(component_data):
     # all sequences have to be of the same length
     length_dict = {key: len(value) for key, value in component_data["sequences"].items()}
     if bool(length_dict):
-        print(f"Amount of time steps per parameter: {length_dict}")
+        print(f"Amount of time steps per parameter before stretching: {length_dict}") # todo delete
     if len(set(length_dict.values())) > 1:
         max_length = max(
             len(value) for value in component_data["sequences"].values())
@@ -29,6 +30,11 @@ def process_component_data(component_data):
             if len(value) < max_length:
                 logging.info(
                     f"Stretching {key} of {component_data['scalars']['label']} to length of longest time series: {max_length}, because sequences have to be of the same length.")
-                component_data["sequences"][key] = value * (max_length // len(value)) + value[:max_length % len(value)]
+                # in case of value being of type pd.Series convert to list
+                is_series = isinstance(value, pd.Series)
+                value = list(value) if is_series else value
+                # stretch
+                stretched_value = value * (max_length // len(value)) + value[:max_length % len(value)]
+                component_data["sequences"][key] = pd.Series(stretched_value) if is_series else stretched_value
 
     return component_data
