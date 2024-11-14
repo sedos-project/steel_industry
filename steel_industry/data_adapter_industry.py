@@ -49,6 +49,9 @@ if DEBUG:
 else:
     es_dump_path = pathlib.Path(__file__).parent / "results" / "energysystem_full"
 
+if not es_dump_path.exists():
+    es_dump_path.mkdir()
+
 if not READ_DUMP:
     # delete collection before downloading
     # shutil.rmtree(pathlib.Path(__file__).parent / "collections" / "steel_industry_test")
