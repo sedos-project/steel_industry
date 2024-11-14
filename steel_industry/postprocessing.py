@@ -32,6 +32,6 @@ def get_inputs(model):
 
 
 def process_results(es, file_name):
-    scalars = calculations.run_postprocessing(es)
+    all_scalars = calculations.run_postprocessing(es)
 
     all_scalars.to_csv(file_name)
