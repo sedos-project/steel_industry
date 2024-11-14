@@ -201,4 +201,7 @@ PARAMETER_MAP_STEEL = {
         "profile": "demand_timeseries_fixed",
         "amount": "demand_annual",
     },
+    "helper_source_exo_steel": {
+        "marginal_cost": "cost_var_w",
+    },
 }
