@@ -1,7 +1,7 @@
 .idea/
 __pycache__/
 *.egg-info/
-/steel_industry/datapackage/data/elements/*
+/steel_industry/datapackage/*
 /steel_industry/collections/*
 /steel_industry/structures/*
 /steel_industry/results/*
