@@ -1,9 +1,8 @@
 import pandas as pd
 
-# Testet, ob im "name" am Ende eine Zahl steht
 def split_name(name):
     '''
-    :param name: (string) Entry in the “name” column of result.csv
+    :param:  name: (string) - Entry in the “name” column of result.csv
     :return: (list) of strings
     :logik: divide a "_"-seperated string into a list of strings
     '''
@@ -11,17 +10,22 @@ def split_name(name):
     if len(a) == 1:
         return a
     if len(a) > 1:
-        parts = name.rsplit('_', 1)  # Trennt den String in zwei Teile
-        if parts[1].isdigit():  # Überprüft, ob der letzte Teil eine Zahl ist
+        parts = name.rsplit('_', 1)
+        if parts[1].isdigit():  # Checks whether the last part is a number
             return parts[0].split('_') + [int(parts[1])]
         else:
             return name.split('_')
 
-# Teilt die Einträge in Spalte "name" von data und entsprechende Zuordnung in Spalten von results
 def name_function(data,output):
+    '''
+    :param:  data: (pd.Dataframe)
+             output: (pd.Dataframe)
+    :return: output values for output
+    :logik: Splits the entries in column “name” of data and corresponding assignment in columns of output
+    '''
     for i in data.index:
         a = split_name(data.loc[i, "name"])
-        # verschiedene verzweigungen, abhängig von den Einträgen in der Spalte "name"
+        # Various conditions, depending on the entries in the “name” column
         if len(a) == 1:
             output.loc[i, "process"] = data.loc[i, "name"]
             continue
@@ -43,20 +47,23 @@ def name_function(data,output):
             output.loc[i, "specification"] = a
 
 def var_name_function(data,output):
-    energy_units = ["MWh","kWh","PJ"]
-    weighted_units = ["Mt","Mt/a","kg"]
+    '''
+    :param:  data: (pd.Dataframe)
+                 output: (pd.Dataframe)
+    :return: output values (string/int) for output (pd.Dataframe)
+    :logik: Splits the entries in column “var_name” of data and corresponding assignment in columns of output
+    '''
+    #energy_units = ["MWh","kWh","PJ"]
+    #weighted_units = ["Mt","Mt/a","kg"]
     for i in data.index:
         a = data.loc[i, "var_name"].split('_')
-        # verschiedene verzweigungen, abhängig von den Einträgen in der Spalte "var_name"
-        # invest - Verzweigung
+        # Various conditions, depending on the entries in the “var_name” column
+        # invest - condition
         if a[0] == "invest":
-            if data.loc[i,"unit"] in energy_units:
-                output.loc[i, "parameter"] = "capacity_p_inst"
-                continue
-            if data.loc[i,"unit"] in weighted_units:
-                output.loc[i, "parameter"] = "capacity_w_inst"
-                continue
-        # flow - Verzweigung
+            a = a[2:]
+            output.loc[i, "output_groups"] = '_'.join(a) # there is only invest_out
+            continue
+        # flow - condition
         if a[0] == "flow":
             output.loc[i, "parameter"] = "flow_volume"
             if a[1] == "in":
@@ -67,7 +74,7 @@ def var_name_function(data,output):
                 a = a[2:]
                 output.loc[i, "output_groups"] = '_'.join(a)
                 continue
-        # system - Verzweigung
+        # system - condition
         else:
             output.loc[i, "process"] = '_'.join(a[:2])
             output.loc[i, "parameter"] = a[-1]

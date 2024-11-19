@@ -4,7 +4,7 @@ from openpyxl.utils import get_column_letter
 import pandas as pd
 from functions import name_function, var_name_function
 
-# Vorbereitung Output
+# Preparation Output
 
 # create dataframe for results
 columns = ["scenario", "parameter", "process", "sector", "category",
@@ -13,69 +13,40 @@ columns = ["scenario", "parameter", "process", "sector", "category",
 
 output = pd.DataFrame(columns= columns)
 
-# Vorbereitung Input
+# Preparation Input
 
-data = pd.read_csv("results.csv",
+data = pd.read_csv("results/test/results_invested_capacity.csv",
                         sep=",")
 
-# Wendet eine String-Ersetzung auf jeden Wert in der Spalte name an.
+# Applies a string replacement to each value in the name column.
 data['name'] = data['name'].str.replace(r'--\d+$', '', regex=True)
 
-# Entfernen aller Zeilen, bei denen die Einträge in der Spalte "name" mit "helper" beginnen
+# Remove all rows where the entries in the “name” column begin with “helper”
 data = data[~data['name'].str.startswith('helper')]
 data.reset_index(drop=True)
 # --------------------------------------------------------------------------------------------------------------------->
 
-# Erzeugen von zwei test Zeilen in data für var_name == invest
-test_data = {"name": ["ind_steel_casting_1","ind_steel_casting_2"],
-        "var_name": ["invest_out_exo_steel","invest_out_exo_steel"],
-        "var_value": [999,888],
-        "region": ["DE","DE"],
-        "type":[{},{}],
-        "carrier": [{},{}],
-        "tech":["tech","tech"],
-        "unit":["MWh","kg"]
-}
-df_test = pd.DataFrame(test_data)
-
-data['unit'] = "MWh"
-
-data2 = pd.concat([data, df_test], ignore_index=True)
-
-
-# --------------------------------------------------------------------------------------------------------------------->
-'''
 # fill the output dataframe with data
 
-name_function(data,output) # evtl. columns als argument entfernen
+name_function(data,output) 
 
 var_name_function(data,output)
 
 output.value = data.var_value
 
 output.scenario = "o_steel_tokio"
-'''
-# --------------------------------------------------------------------------------------------------------------------->
-
-# fill the output dataframe with data incl. testdata
-
-name_function(data2,output) # evtl. columns als argument entfernen
-
-var_name_function(data2,output)
-
-output.value = data2.var_value
-
-output.scenario = "o_steel_tokio"
 
 # --------------------------------------------------------------------------------------------------------------------->
+
+# save data as csv
 
 # save data as excel sheet
 
-with pd.ExcelWriter("SEDOS_output.xlsx") as writer:
+with pd.ExcelWriter("results/dashboard_results/SEDOS_output.xlsx") as writer:
     output.to_excel(writer, sheet_name="SEDOS_output", index=False)
 
 # Lade die erstellte Excel-Datei mit openpyxl
-wb = load_workbook("SEDOS_output.xlsx")
+wb = load_workbook("results/dashboard_results/SEDOS_output.xlsx")
 
 # Funktion zum Anpassen der Spaltenbreite
 def adjust_column_width(sheet):
