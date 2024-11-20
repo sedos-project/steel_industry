@@ -3,6 +3,9 @@ from openpyxl import load_workbook
 from openpyxl.utils import get_column_letter
 import pandas as pd
 from functions import name_function, var_name_function
+import pathlib
+
+from steel_industry import functions
 
 # Preparation Output
 
@@ -33,6 +36,13 @@ name_function(data,output)
 var_name_function(data,output)
 
 output.value = data.var_value
+
+# todo getting the units will be part of data_adapter_industry, when result_data_adapter is a function
+from oemof.solph._energy_system import EnergySystem
+es = EnergySystem()
+es.restore(pathlib.Path(__file__).parent / "results" / "energysystem")
+units = es.units
+functions.add_units(output, units)
 
 output.scenario = "o_steel_tokio"
 
