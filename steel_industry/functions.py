@@ -142,7 +142,10 @@ def add_units(output, units):
             return np.nan
         # If the unit is retrieved from a conversion_factor, the unit in
         # the numerator is the unit of the commodity
-        unit = possible_units[0].split("/")[0]
+        if "," in possible_units[0]:
+            unit = possible_units[0].split(",")[0]
+        else:
+            unit = possible_units[0].split("/")[0]
 
         return unit
 
