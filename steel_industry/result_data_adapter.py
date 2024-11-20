@@ -40,7 +40,7 @@ es.restore(pathlib.Path(__file__).parent / "results" / "energysystem")
 units = es.units
 functions.add_units(output, units)
 
-output.scenario = "o_steel_tokio"
+output.scenario = "test_o_steel_tokio_v2"
 
 output["id"] = range(len(output))
 
@@ -52,7 +52,7 @@ output = output[columns]
 # save data as csv
 
 # save data as excel sheet
-output.to_csv(pathlib.Path(__file__).parent / "results" / "dashboard_results" / "o_steel_tokio_results.csv",
+output.to_csv(pathlib.Path(__file__).parent / "results" / "dashboard_results" / "sedos_results.csv",
                         sep=";", index=False)
 # with pd.ExcelWriter("results/dashboard_results/SEDOS_output.xlsx") as writer:
 #     output.to_excel(writer, sheet_name="SEDOS_output", index=False)
