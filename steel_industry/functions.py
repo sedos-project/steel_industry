@@ -38,7 +38,7 @@ def name_function(data,output):
             a = a[1:]
             output.loc[i, "category"] = a[0]
             a = a[1:]
-            output.loc[i, "new"] = a[-1]
+            output.loc[i, "new"] = 1 if a[-1] == 2 else a[-1]
             a = a[:-1]
             output.loc[i, "specification"] = '_'.join(a)
         else:
@@ -48,6 +48,7 @@ def name_function(data,output):
             output.loc[i, "category"] = a[0]
             a = a[1:]
             output.loc[i, "specification"] = '_'.join(a)
+            output.loc[i, "new"] = 0 if data.loc[i, "name"] in ["ind_source_steel_scrap_iron"] else 1
 
 def var_name_function(data,output):
     '''
