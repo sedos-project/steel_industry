@@ -43,6 +43,9 @@ functions.add_units(output, units)
 
 output.scenario = "o_steel_tokio"
 
+output["id"] = range(len(output))
+
+functions.change_values_to_string_array(output, columns=["input_groups", "output_groups", "groups"])
 # --------------------------------------------------------------------------------------------------------------------->
 
 # save data as csv

@@ -1,4 +1,7 @@
 import pandas as pd
+import json
+import numpy as np
+import logging
 
 def split_name(name):
     '''
@@ -80,6 +83,7 @@ def var_name_function(data,output):
             output.loc[i, "process"] = '_'.join(a[:2])
             output.loc[i, "parameter"] = a[-1]
 
+
 def add_units(output, units):
     """
     Adds units to `output` depending on input data units.
@@ -147,3 +151,7 @@ def add_units(output, units):
     ].apply(lambda x: apply_units(x, units[x["process"]], output), axis=1)
 
 
+def change_values_to_string_array(output, columns):
+    for column in columns:
+        output[column] = output[column].apply(
+            lambda x: json.dumps([x]) if x is not np.nan else np.nan)
