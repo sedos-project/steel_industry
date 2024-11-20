@@ -26,12 +26,12 @@ data.reset_index(drop=True)
 # --------------------------------------------------------------------------------------------------------------------->
 
 # fill the output dataframe with data
+output.value = data.var_value
+output.year = data.year
 
 functions.name_function(data,output)
 
 functions.var_name_function(data,output)
-
-output.value = data.var_value
 
 # todo getting the units will be part of data_adapter_industry, when result_data_adapter is a function
 from oemof.solph._energy_system import EnergySystem
