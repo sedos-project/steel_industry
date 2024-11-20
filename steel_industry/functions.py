@@ -37,14 +37,14 @@ def name_function(data,output):
             a = a[1:]
             output.loc[i, "new"] = a[-1]
             a = a[:-1]
-            output.loc[i, "specification"] = a
+            output.loc[i, "specification"] = '_'.join(a)
         else:
             output.loc[i, "process"] = data.loc[i, "name"]
             output.loc[i, "sector"] = a[0]
             a = a[1:]
             output.loc[i, "category"] = a[0]
             a = a[1:]
-            output.loc[i, "specification"] = a
+            output.loc[i, "specification"] = '_'.join(a)
 
 def var_name_function(data,output):
     '''
