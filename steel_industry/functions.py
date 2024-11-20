@@ -60,6 +60,7 @@ def var_name_function(data,output):
         # Various conditions, depending on the entries in the “var_name” column
         # invest - condition
         if a[0] == "invest":
+            output.loc[i, "parameter"] = "capacity_x_inst"
             a = a[2:]
             output.loc[i, "output_groups"] = '_'.join(a) # there is only invest_out
             continue
