@@ -1,5 +1,4 @@
 import pandas as pd
-from functions import name_function, var_name_function
 import pathlib
 
 from steel_industry import functions
@@ -28,9 +27,9 @@ data.reset_index(drop=True)
 
 # fill the output dataframe with data
 
-name_function(data,output) 
+functions.name_function(data,output)
 
-var_name_function(data,output)
+functions.var_name_function(data,output)
 
 output.value = data.var_value
 
