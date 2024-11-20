@@ -6,9 +6,9 @@ from steel_industry import functions
 # Preparation Output
 
 # create dataframe for results
-columns = ["scenario", "parameter", "process", "sector", "category",
-               "specification", "groups", "new", "input_groups",
-               "output_groups", "unit", "value"]
+columns = ["id", "scenario", "process", "parameter", "sector", "category",
+           "specification", "new", "groups", "input_groups", "output_groups",
+           "year", "unit", "value"]
 
 output = pd.DataFrame(columns= columns)
 
@@ -18,10 +18,10 @@ data = pd.read_csv(pathlib.Path(__file__).parent / "results" / "test" / "results
                         sep=",")
 
 # Applies a string replacement to each value in the name column.
-data['name'] = data['name'].str.replace(r'--\d+$', '', regex=True)
+data["name"] = data["name"].str.replace(r"--\d+$", "", regex=True)
 
 # Remove all rows where the entries in the “name” column begin with “helper”
-data = data[~data['name'].str.startswith('helper')]
+data = data[~data["name"].str.startswith("helper")]
 data.reset_index(drop=True)
 # --------------------------------------------------------------------------------------------------------------------->
 
@@ -45,13 +45,15 @@ output.scenario = "o_steel_tokio"
 output["id"] = range(len(output))
 
 functions.change_values_to_string_array(output, columns=["input_groups", "output_groups", "groups"])
+
+output = output[columns]
 # --------------------------------------------------------------------------------------------------------------------->
 
 # save data as csv
 
 # save data as excel sheet
 output.to_csv(pathlib.Path(__file__).parent / "results" / "dashboard_results" / "o_steel_tokio_results.csv",
-                        sep=";")
+                        sep=";", index=False)
 # with pd.ExcelWriter("results/dashboard_results/SEDOS_output.xlsx") as writer:
 #     output.to_excel(writer, sheet_name="SEDOS_output", index=False)
 #
