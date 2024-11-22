@@ -1,4 +1,7 @@
 import pandas as pd
+import json
+import numpy as np
+import logging
 
 def split_name(name):
     '''
@@ -35,16 +38,17 @@ def name_function(data,output):
             a = a[1:]
             output.loc[i, "category"] = a[0]
             a = a[1:]
-            output.loc[i, "new"] = a[-1]
+            output.loc[i, "new"] = 1 if a[-1] == 2 else a[-1]
             a = a[:-1]
-            output.loc[i, "specification"] = a
+            output.loc[i, "specification"] = '_'.join(a)
         else:
             output.loc[i, "process"] = data.loc[i, "name"]
             output.loc[i, "sector"] = a[0]
             a = a[1:]
             output.loc[i, "category"] = a[0]
             a = a[1:]
-            output.loc[i, "specification"] = a
+            output.loc[i, "specification"] = '_'.join(a)
+            output.loc[i, "new"] = 0 if data.loc[i, "name"] in ["ind_source_steel_scrap_iron"] else 1
 
 def var_name_function(data,output):
     '''
@@ -60,6 +64,7 @@ def var_name_function(data,output):
         # Various conditions, depending on the entries in the “var_name” column
         # invest - condition
         if a[0] == "invest":
+            output.loc[i, "parameter"] = "capacity_x_inst"
             a = a[2:]
             output.loc[i, "output_groups"] = '_'.join(a) # there is only invest_out
             continue
@@ -78,3 +83,79 @@ def var_name_function(data,output):
         else:
             output.loc[i, "process"] = '_'.join(a[:2])
             output.loc[i, "parameter"] = a[-1]
+
+
+def add_units(output, units):
+    """
+    Adds units to `output` depending on input data units.
+
+    Uses apply_units() to adapt the `output`.
+
+    Parameters
+    ----------
+    output : pd.DataFrame
+        Contains the output data at current stage. See result_data_adapter.py
+        for column names.
+    units : dict
+        Result of es.units. keys: process names values: dict containing
+        parameters of optimization as keys and units as values.
+    """
+    def apply_units(x, units, output):
+        parameter = x["parameter"]
+
+        # Get commodity for which the unit is needed
+        commodities = x[["input_groups", "output_groups"]].dropna()
+        if len(commodities) != 1:
+            logging.warning(
+                f"Unit can only be defined for 1 commodity, got {commodities} "
+                f"for {x['process']} {parameter}.")
+            return np.nan
+        commodity = commodities.iloc[0]
+
+        if parameter == "flow_volume":
+            # Get possible units, drop duplicates
+            possible_units_dict = {
+                key: value for key, value in units.items() if commodity in key}
+            if len(possible_units_dict) > 1:
+                # if there is a conversion factor it is used over ef_ and flow shares
+                possible_units_dict = {
+                    key: value for key, value in possible_units_dict.items()
+                        if "ef_" not in key and "flow_share_" not in key}
+
+        elif parameter == "capacity_x_inst":
+            possible_units_dict = {
+                key: value for key, value in units.items() if "capacity" in key}
+            if len(possible_units_dict) != 1:
+                possible_units_dict = {key: value for key, value in
+                                       units.items() if commodity in key}
+
+        # elif parameter == "":
+        else:
+            return np.nan
+            logging.warning(f"No unit found for {parameter} of {x['process']}.")
+
+        possible_units = list(
+            set([value for value in possible_units_dict.values()]))
+        if len(possible_units) != 1:
+            logging.warning(
+                f"No unit or more than one unit found for {commodity} of "
+                f"{x['process']}: {possible_units}.")
+            return np.nan
+        # If the unit is retrieved from a conversion_factor, the unit in
+        # the numerator is the unit of the commodity
+        if "," in possible_units[0]:
+            unit = possible_units[0].split(",")[0]
+        else:
+            unit = possible_units[0].split("/")[0]
+
+        return unit
+
+    output["unit"] = output[
+        ["parameter", "process", "input_groups", "output_groups"]
+    ].apply(lambda x: apply_units(x, units[x["process"]], output), axis=1)
+
+
+def change_values_to_string_array(output, columns):
+    for column in columns:
+        output[column] = output[column].apply(
+            lambda x: json.dumps([x]) if x is not np.nan else np.nan)
