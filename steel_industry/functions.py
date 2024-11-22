@@ -3,6 +3,7 @@ import json
 import numpy as np
 import logging
 
+
 def split_name(name):
     '''
     :param:  name: (string) - Entry in the “name” column of result.csv
@@ -84,7 +85,6 @@ def var_name_function(data,output):
             output.loc[i, "process"] = '_'.join(a[:2])
             output.loc[i, "parameter"] = a[-1]
 
-
 def add_units(output, units):
     """
     Adds units to `output` depending on input data units.
@@ -154,8 +154,42 @@ def add_units(output, units):
         ["parameter", "process", "input_groups", "output_groups"]
     ].apply(lambda x: apply_units(x, units[x["process"]], output), axis=1)
 
-
 def change_values_to_string_array(output, columns):
     for column in columns:
         output[column] = output[column].apply(
             lambda x: json.dumps([x]) if x is not np.nan else np.nan)
+
+def filter_rows_by_helper(data,helper_processes):
+    return data[data["name"].isin(helper_processes)]
+
+
+def helper_results(helper,output):
+    for i in helper.index:
+        output.loc[i, "process"] = helper.loc[i, "name"]
+        output.loc[i, "year"] = helper.loc[i, "year"]
+        if helper.loc[i,"name"] == "helper_import_electricity_from_plug":
+            output.loc[i,"sector"] = "ind"
+            output.loc[i,"category"] = "electricity"
+            output.loc[i, "specification"] = "plug"
+            output.loc[i, "new"] = 1
+            continue
+        if helper.loc[i,"name"] == "helper_source_exo_steel":
+            output.loc[i,"sector"] = "ind"
+            output.loc[i,"category"] = "steel"
+            output.loc[i, "specification"] = "shortage"
+            output.loc[i, "new"] = 1
+            continue
+        if helper.loc[i,"name"] == "helper_pow_ind_grid_elec":
+            output.loc[i,"sector"] = "ind"
+            output.loc[i,"category"] = "electricity"
+            output.loc[i, "specification"] = "conversion"
+            output.loc[i, "new"] = 1
+            continue
+        if helper.loc[i,"name"] == "helper_sink_exo_steel":
+            output.loc[i,"sector"] = "ind"
+            output.loc[i,"category"] = "steel"
+            output.loc[i, "specification"] = "demand"
+            output.loc[i, "new"] = 0
+            continue
+
+
