@@ -162,7 +162,6 @@ def change_values_to_string_array(output, columns):
 def filter_rows_by_helper(data,helper_processes):
     return data[data["name"].isin(helper_processes)]
 
-
 def helper_results(helper,output):
     for i in helper.index:
         output.loc[i, "process"] = helper.loc[i, "name"]
@@ -192,4 +191,35 @@ def helper_results(helper,output):
             output.loc[i, "new"] = 0
             continue
 
+def calculate_co2_eq(sedos_results):
+    # filter sedos_results by processes with ch4 and n20 emissions
+    emis = ["emi_ch4_f_ind", "emi_n2o_f_ind"]
+    sedos_emis = sedos_results[sedos_results["output_groups"].isin(emis)]
 
+    # Pivot to facilitate calculations
+    pivot_df = sedos_emis.pivot_table(
+        index=["process", "year"],
+        columns="output_groups",
+        values="value",
+        aggfunc="first"
+    ).reset_index()
+    pivot_df["emi_co2_eq"] = 28 * pivot_df["emi_ch4_f_ind"] + 265 * pivot_df["emi_n2o_f_ind"]
+
+    # create dataframe with new rows included calculated co2 - emissions
+    new_rows = pivot_df[["process", "year", "emi_co2_eq"]].rename(columns={"emi_co2_eq": "value"})
+    new_rows["output_groups"] = "emi_co2_eq"
+
+    # complete new dataframe with the data of the inlcuded processes
+    grouped = sedos_emis.groupby('process').agg({
+        'parameter': 'first',
+        'sector': 'first',
+        'category': 'first',
+        'specification': 'first',
+        'new': 'first'
+    }).reset_index()
+
+    new_rows = pd.merge(new_rows, grouped, on="process", how="left")
+    # merge new rows to sedos_results
+    sedos_results = pd.concat([sedos_results, new_rows], ignore_index=True)
+
+    return sedos_results
