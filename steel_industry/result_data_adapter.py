@@ -2,9 +2,12 @@ import pandas as pd
 import pathlib
 from steel_industry import functions
 
+'''
 # Arbeitsverzeichnis festlegen
+# NZ : Brauche ich um das Script ausführen zu können
 import os
 os.chdir("/home/norman/RLI_Mounts/usershare/SEDOS/steel_industry2/steel_industry")
+'''
 
 # Preparation Output
 
@@ -19,10 +22,8 @@ helper_output = pd.DataFrame(columns= columns)
 
 # Preparation Input
 
-
 data = pd.read_csv(pathlib.Path(__file__).parent / "results" / "test" / "results.csv",
                         sep=",")
-
 
 # alternative
 '''
@@ -51,9 +52,6 @@ helper = functions.filter_rows_by_helper(data, helper_processes)
 data = data[~data["name"].str.startswith("helper")]
 data.reset_index(drop=True)
 
-# concat remaining data with selected helper
-#data = pd.concat([data,helper], ignore_index=True)
-
 # --------------------------------------------------------------------------------------------------------------------->
 
 # fill the output dataframe with data
@@ -72,8 +70,6 @@ es.restore(pathlib.Path(__file__).parent / "results" / "energysystem")
 units = es.units
 functions.add_units(output, units)
 '''
-
-#functions.change_values_to_string_array(output, columns=["input_groups", "output_groups", "groups"])
 
 output = output[columns] # ? Wozu ?
 
@@ -104,6 +100,16 @@ sedos_results["id"] = range(len(sedos_results))
 
 functions.change_values_to_string_array(sedos_results, columns=["input_groups", "output_groups", "groups"])
 
+# create random units for testing
+import random
+energy_units = ["MWh", "kWh", "PJ", "Mt", "Mt/a", "kg"]
+power_units = ["W", "kW", "MW", "GW"]
+all_units = energy_units + power_units
+# Generate random units for each row
+sedos_results["unit"] = [random.choice(all_units) for _ in range(len(sedos_results))]
+
+functions.check_units(sedos_results)
+
 # --------------------------------------------------------------------------------------------------------------------->
 
 # save data as csv
@@ -116,25 +122,3 @@ sedos_results.to_csv(pathlib.Path(__file__).parent / "results" / "dashboard_resu
 sedos_results.to_csv("results/dashboard_results/sedos_results.csv",
               sep=";", index=False)
 '''
-
-# save data as excel sheet
-
-# with pd.ExcelWriter("results/dashboard_results/SEDOS_output.xlsx") as writer:
-#     output.to_excel(writer, sheet_name="SEDOS_output", index=False)
-#
-# # Lade die erstellte Excel-Datei mit openpyxl
-# wb = load_workbook("results/dashboard_results/SEDOS_output.xlsx")
-#
-# # Funktion zum Anpassen der Spaltenbreite
-# def adjust_column_width(sheet):
-#     for col_index, column_cells in enumerate(sheet.columns, start=1):
-#         # Berechne die maximale Länge der Werte in der Spalte
-#         max_length = max(len(str(cell.value) or "") for cell in column_cells)  # Handle None values
-#         column_letter = get_column_letter(col_index)
-#         # Setze die Spaltenbreite basierend auf der maximalen Länge der Zelleninhalte
-#         sheet.column_dimensions[column_letter].width = max_length + 5
-#
-#     # Passe die Spaltenbreite an
-# sheet = wb["SEDOS_output"]
-# adjust_column_width(sheet)
-#

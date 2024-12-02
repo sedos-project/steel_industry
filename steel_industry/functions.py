@@ -58,8 +58,6 @@ def var_name_function(data,output):
     :return: output values (string/int) for output (pd.Dataframe)
     :logik: Splits the entries in column “var_name” of data and corresponding assignment in columns of output
     '''
-    #energy_units = ["MWh","kWh","PJ"]
-    #weighted_units = ["Mt","Mt/a","kg"]
     for i in data.index:
         a = data.loc[i, "var_name"].split('_')
         # Various conditions, depending on the entries in the “var_name” column
@@ -209,7 +207,7 @@ def calculate_co2_eq(sedos_results):
     new_rows = pivot_df[["process", "year", "emi_co2_eq"]].rename(columns={"emi_co2_eq": "value"})
     new_rows["output_groups"] = "emi_co2_eq"
 
-    # complete new dataframe with the data of the inlcuded processes
+    # complete new dataframe with the data of the included processes
     grouped = sedos_emis.groupby('process').agg({
         'parameter': 'first',
         'sector': 'first',
@@ -223,3 +221,20 @@ def calculate_co2_eq(sedos_results):
     sedos_results = pd.concat([sedos_results, new_rows], ignore_index=True)
 
     return sedos_results
+
+def check_units(sedos_results):
+    energy_units = ["MWh", "kWh", "PJ","Mt","Mt/a","kg"]
+    power_units = ["W","kW","MW","GW"]
+    # Change the values in the 'parameter' column based on the units in the 'unit' column
+    sedos_results["parameter"] = sedos_results.apply(
+        lambda row: "capacity_w_inst" if row["parameter"] == "capacity_x_inst" and row["unit"] in energy_units
+        else "capacity_p_inst" if row["parameter"] == "capacity_x_inst" and row["unit"] in power_units
+        else row["parameter"],
+        axis=1
+    )
+    return sedos_results
+
+
+
+
+
