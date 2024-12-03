@@ -71,6 +71,7 @@ if not READ_DUMP:
     adapter = Adapter(
         "steel_industry_test",
         structure=structure,
+        units=UNITS,
     )
 
     logger.info("Building Adapter Map\n")
@@ -83,7 +84,7 @@ if not READ_DUMP:
             ).to_dict(orient="dict")["facade adapter (oemof)"]
 
     logger.info("Building datapackage...\n")
-    dp = DataPackage.build_datapackage(
+    dp, units = DataPackage.build_datapackage(
         adapter=adapter,
         process_adapter_map=process_adapter_map,
         parameter_map=PARAMETER_MAP_STEEL,
@@ -127,9 +128,10 @@ if not READ_DUMP:
     else:
         logging.info(f"Problem solved. (termination condition '{termination_condition}')\n")
 
-    logger.info("Processing Results")
+    logger.info("Processing Results...\n")
     es.results = postprocessing.get_results(m)
     es.params = postprocessing.get_inputs(m)
+    es.units = units
     # dump energy system to read results again
     es.dump(es_dump_path)
 else:
@@ -138,7 +140,7 @@ else:
     es = EnergySystem()
     es.restore(es_dump_path)
 
-# process and save results
+logger.info("Post-processing results...\n")
 file_name = pathlib.Path(__file__).parent / "results" / "test" / "results.csv"
 postprocessing.process_results(es, file_name)
 logger.info("Writing Results and Goodbye :)")
