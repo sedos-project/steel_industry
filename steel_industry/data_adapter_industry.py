@@ -42,6 +42,16 @@ Model.add_constraints_from_datapackage = deserialize_constraints
 
 DEBUG = True  # set to False for full run. DEBUG reduces to 5 time steps per period
 READ_DUMP = False
+UNITS = [
+    "tCO2eq", "Mt/MWh",
+    # "a",
+    "MWh", "MW", "Mt", "EUR",  # todo achtung, anscheinend muss man Mt/MWh etc. extra angeben
+    # "kg/MWh", "kg/t",
+    # "MWH/MW",  von sto_ep
+    # "EUR/MWh",
+    # conversion factor units   MWh/MWh, MWh/t, MWh/M_units
+    # "MEUR/Mt",
+         ]
 
 if DEBUG:
     logging.info("Simulation running in debug mode. Set DEBUG to False for full simulation.")
