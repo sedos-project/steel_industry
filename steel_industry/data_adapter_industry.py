@@ -123,12 +123,17 @@ if not READ_DUMP:
             "storage": Storage,
             "conversion_ghg": ConversionGHG,
             "commodity_ghg": CommodityGHG,
-            "co2_emission_limit": CO2EmissionLimit,
         },
     )
 
     logger.info("Building Model...\n")
     m = Model(es)
+    Model.add_constraints_from_datapackage(
+        model=m,
+        path="datapackage/datapackage.json",
+        constraint_type_map={"co2_emission_limit": CO2EmissionLimit}
+    )
+
     logger.info("Solving Model...\n")
     m.solve(solver="cbc")
 
