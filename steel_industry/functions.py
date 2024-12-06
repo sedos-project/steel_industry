@@ -61,12 +61,24 @@ def var_name_function(data,output):
     for i in data.index:
         a = data.loc[i, "var_name"].split('_')
         # Various conditions, depending on the entries in the “var_name” column
-        # invest - condition
-        if a[0] == "invest":
-            output.loc[i, "parameter"] = "capacity_x_inst"
+
+        # invest_out - condition
+        if '_'.join(a[:2]) == 'invest_out':
             a = a[2:]
             output.loc[i, "output_groups"] = '_'.join(a) # there is only invest_out
+            if output.loc[i, "new"] == 0:
+                output.loc[i, "parameter"] = "capacity_inst"
+            else:
+                output.loc[i, "parameter"] = "capacity_new"
             continue
+
+        # invest_cost - condition
+        if '_'.join(a[:2]) == 'invest_costs':
+            output.loc[i, "parameter"] = "costs_investment"
+            a = a[3:]
+            output.loc[i, "output_groups"] = '_'.join(a) # there is only invest_cost_out
+            continue
+
         # flow - condition
         if a[0] == "flow":
             output.loc[i, "parameter"] = "flow_volume"

@@ -59,7 +59,6 @@ output.value = data.var_value
 output.year = data.year
 
 functions.name_function(data,output)
-
 functions.var_name_function(data,output) #-> später ausführen -> nach helper
 
 '''
@@ -100,15 +99,17 @@ sedos_results["id"] = range(len(sedos_results))
 
 functions.change_values_to_string_array(sedos_results, columns=["input_groups", "output_groups", "groups"])
 
+'''
 # create random units for testing
-# import random
-# energy_units = ["MWh", "kWh", "PJ", "Mt", "Mt/a", "kg"]
-# power_units = ["W", "kW", "MW", "GW"]
-# all_units = energy_units + power_units
-# # Generate random units for each row
-# sedos_results["unit"] = [random.choice(all_units) for _ in range(len(sedos_results))]
+import random
+energy_units = ["MWh", "kWh", "PJ", "Mt", "Mt/a", "kg"]
+power_units = ["W", "kW", "MW", "GW"]
+all_units = energy_units + power_units
+# Generate random units for each row
+sedos_results["unit"] = [random.choice(all_units) for _ in range(len(sedos_results))]
+'''
 
-functions.check_units(sedos_results)
+# functions.check_units(sedos_results) -> not needed at the moment
 
 # --------------------------------------------------------------------------------------------------------------------->
 
