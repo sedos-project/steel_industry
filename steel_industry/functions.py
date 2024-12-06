@@ -78,6 +78,7 @@ def var_name_function(data,output):
                 a = a[2:]
                 output.loc[i, "output_groups"] = '_'.join(a)
                 continue
+
         # system - condition
         else:
             output.loc[i, "process"] = '_'.join(a[:2])
@@ -127,7 +128,10 @@ def add_units(output, units):
                 possible_units_dict = {key: value for key, value in
                                        units.items() if commodity in key}
 
-        # elif parameter == "":
+        elif parameter == "cost_inv_x":
+            possible_units_dict = {
+                key: value for key, value in units.items() if
+                "cost_inv" in key}
         else:
             return np.nan
             logging.warning(f"No unit found for {parameter} of {x['process']}.")
@@ -140,7 +144,8 @@ def add_units(output, units):
                 f"{x['process']}: {possible_units}.")
             return np.nan
         # If the unit is retrieved from a conversion_factor, the unit in
-        # the numerator is the unit of the commodity
+        # the numerator is the unit of the commodity, same accounts for
+        # investment costs
         if "," in possible_units[0]:
             unit = possible_units[0].split(",")[0]
         else:

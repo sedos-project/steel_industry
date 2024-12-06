@@ -62,14 +62,14 @@ functions.name_function(data,output)
 
 functions.var_name_function(data,output)
 
-'''
+
 # todo getting the units will be part of data_adapter_industry, when result_data_adapter is a function
 from oemof.solph._energy_system import EnergySystem
 es = EnergySystem()
 es.restore(pathlib.Path(__file__).parent / "results" / "energysystem")
 units = es.units
 functions.add_units(output, units)
-'''
+
 
 output = output[columns] # ? Wozu ?
 
@@ -92,7 +92,7 @@ sedos_results = functions.calculate_co2_eq(sedos_results)
 
 # fill columns "scenario" and "id"
 
-sedos_results.scenario = "test_o_steel_tokio_v2"
+sedos_results.scenario = "test_o_steel_tokio_v3"
 
 sedos_results["id"] = range(len(sedos_results))
 
@@ -101,12 +101,12 @@ sedos_results["id"] = range(len(sedos_results))
 functions.change_values_to_string_array(sedos_results, columns=["input_groups", "output_groups", "groups"])
 
 # create random units for testing
-import random
-energy_units = ["MWh", "kWh", "PJ", "Mt", "Mt/a", "kg"]
-power_units = ["W", "kW", "MW", "GW"]
-all_units = energy_units + power_units
-# Generate random units for each row
-sedos_results["unit"] = [random.choice(all_units) for _ in range(len(sedos_results))]
+# import random
+# energy_units = ["MWh", "kWh", "PJ", "Mt", "Mt/a", "kg"]
+# power_units = ["W", "kW", "MW", "GW"]
+# all_units = energy_units + power_units
+# # Generate random units for each row
+# sedos_results["unit"] = [random.choice(all_units) for _ in range(len(sedos_results))]
 
 functions.check_units(sedos_results)
 
