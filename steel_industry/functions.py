@@ -193,6 +193,7 @@ def helper_results(helper,output):
             output.loc[i, "specification"] = "demand"
             output.loc[i, "new"] = 0
             continue
+    var_name_function(helper,output)
 
 def calculate_co2_eq(sedos_results):
     # filter sedos_results by processes with ch4 and n20 emissions

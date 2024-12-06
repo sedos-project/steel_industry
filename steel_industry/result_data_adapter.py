@@ -8,7 +8,7 @@ from steel_industry import functions
 import os
 os.chdir("/home/norman/RLI_Mounts/usershare/SEDOS/steel_industry2/steel_industry")
 '''
-
+# später Input == Pfad zur results.csv tabelle
 # Preparation Output
 
 # create dataframe for results
@@ -60,16 +60,16 @@ output.year = data.year
 
 functions.name_function(data,output)
 
-functions.var_name_function(data,output)
+functions.var_name_function(data,output) #-> später ausführen -> nach helper
 
-
+'''
 # todo getting the units will be part of data_adapter_industry, when result_data_adapter is a function
 from oemof.solph._energy_system import EnergySystem
 es = EnergySystem()
 es.restore(pathlib.Path(__file__).parent / "results" / "energysystem")
 units = es.units
 functions.add_units(output, units)
-
+'''
 
 output = output[columns] # ? Wozu ?
 
