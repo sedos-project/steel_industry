@@ -231,7 +231,8 @@ def calculate_co2_eq(sedos_results):
         'sector': 'first',
         'category': 'first',
         'specification': 'first',
-        'new': 'first'
+        'new': 'first',
+        'unit': 'first'
     }).reset_index()
 
     new_rows = pd.merge(new_rows, grouped, on="process", how="left")

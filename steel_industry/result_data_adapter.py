@@ -61,6 +61,8 @@ output.year = data.year
 functions.name_function(data,output)
 functions.var_name_function(data,output) #-> später ausführen -> nach helper
 
+output.unit = "t"
+
 '''
 # todo getting the units will be part of data_adapter_industry, when result_data_adapter is a function
 from oemof.solph._energy_system import EnergySystem
@@ -78,9 +80,16 @@ functions.helper_results(helper,helper_output)
 
 helper_output["value"] = helper["var_value"]
 
+# TO DO: units zu helper noch hinzufügen
+# -> functions.add_units(helper_output, units)
+
+helper_output.unit = "t"
+
 # concat output and helper
 
 sedos_results = pd.concat([output, helper_output], ignore_index=True)
+
+# NZ: can we add units here? -> avoiding double code
 
 # calculate emissions CO2_eq
 '''
@@ -92,7 +101,6 @@ sedos_results = functions.calculate_co2_eq(sedos_results)
 # fill columns "scenario" and "id"
 
 sedos_results.scenario = "test_o_steel_tokio_v3"
-
 sedos_results["id"] = range(len(sedos_results))
 
 # change datatype of certain columns from string to string-array
