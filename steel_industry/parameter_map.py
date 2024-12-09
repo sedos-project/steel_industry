@@ -83,21 +83,35 @@ PARAMETER_MAP_STEEL = {
         "marginal_cost": "cost_var_w",
         # "max":"availability_constant"
     },
-    "ind_steel_sponge_1": {
+    "ind_steel_sponge_dri_1": {
         "capacity_potential": "capacity_w_abs_new_max",
         "capacity_cost": "cost_inv_w",
         "fixed_costs": "cost_fix_w",
         "marginal_cost": "cost_var_w",
         # "max":"availability_constant"
     },
-    "ind_steel_pellet_1": {
+    "ind_steel_sponge_hyd_2": {
         "capacity_potential": "capacity_w_abs_new_max",
         "capacity_cost": "cost_inv_w",
         "fixed_costs": "cost_fix_w",
         "marginal_cost": "cost_var_w",
         # "max":"availability_constant"
     },
-    "ind_steel_hyddri_1": {
+    "ind_steel_pellet_dri_1": {
+        "capacity_potential": "capacity_w_abs_new_max",
+        "capacity_cost": "cost_inv_w",
+        "fixed_costs": "cost_fix_w",
+        "marginal_cost": "cost_var_w",
+        # "max":"availability_constant"
+    },
+    "ind_steel_pellet_hyd_2": {
+        "capacity_potential": "capacity_w_abs_new_max",
+        "capacity_cost": "cost_inv_w",
+        "fixed_costs": "cost_fix_w",
+        "marginal_cost": "cost_var_w",
+        # "max":"availability_constant"
+    },
+    "ind_steel_hyddri_2": {
         "capacity_potential": "capacity_w_abs_new_max",
         "capacity_cost": "cost_inv_w",
         "fixed_costs": "cost_fix_w",
@@ -203,5 +217,11 @@ PARAMETER_MAP_STEEL = {
     },
     "helper_source_exo_steel": {
         "marginal_cost": "cost_var_w",
+    },
+    "helper_import_electricity_from_plug": {
+        "marginal_cost": "cost_var_e",
+    },
+    "helper_import_electricity_from_plug_renewable": {
+        "marginal_cost": "cost_var_e",
     },
 }
