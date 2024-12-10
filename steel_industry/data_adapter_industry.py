@@ -41,6 +41,7 @@ EnergySystem.from_datapackage = classmethod(deserialize_energy_system)
 Model.add_constraints_from_datapackage = deserialize_constraints
 
 DEBUG = True  # set to False for full run. DEBUG reduces to 5 time steps per period
+READ_DUMP = False  # set to True to process previous results
 UNITS = [  # for unit conversion of data_adapter
     "MtCO2eq",
     "MWh", "MW", "Mt", "EUR",
@@ -63,7 +64,7 @@ if not es_dump_path.exists():
     es_dump_path.mkdir()
 
 if not READ_DUMP:
-    # delete collection before downloading
+    ## delete collection before downloading
     # shutil.rmtree(pathlib.Path(__file__).parent / "collections" / "steel_industry_test")
     download_collection(
         "https://databus.openenergyplatform.org/felixmaur/collections/steel_industry_test/"
@@ -75,7 +76,6 @@ if not READ_DUMP:
         process_sheet="Processes_O1",
         parameter_sheet="Parameter_Input-Output",
         helper_sheet="Helper_O1",
-        # new_emission_constraint_inputs=False,  # todo delete !!!
     )
 
     adapter = Adapter(
@@ -105,7 +105,6 @@ if not READ_DUMP:
 
     # delete datapackage before saving it as otherwise old elements are kept
     shutil.rmtree(datapackage_path)
-
     dp.save_datapackage_to_csv(str(datapackage_path))
 
 
