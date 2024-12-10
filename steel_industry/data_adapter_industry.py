@@ -53,6 +53,9 @@ UNITS = [
     # "MEUR/Mt",
          ]
 
+
+model_structure = "SEDOS_Modellstruktur_steel_sector_section"
+
 if DEBUG:
     logging.info("Simulation running in debug mode. Set DEBUG to False for full simulation.")
     es_dump_path = pathlib.Path(__file__).parent / "results" / "energysystem"
@@ -71,7 +74,7 @@ if not READ_DUMP:
 
     logger.info("Reading Structure\n")
     structure = Structure(
-        "SEDOS_Modellstruktur",
+        model_structure,
         process_sheet="Processes_O1",
         parameter_sheet="Parameter_Input-Output",
         helper_sheet="Helper_O1",
