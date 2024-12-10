@@ -1,0 +1,11 @@
+"id","type","carrier","region","year","version","co2_limit","n2o_factor","ch4_factor","steel_emission_share"
+1,"ind_constraint_co2eq","co2","DE",2021,"v1","global_scalars.emission_reduction_target","global_scalars.equivalence_factor_co2_n2o","global_scalars.equivalence_factor_co2_ch4",0.022
+2,"ind_constraint_co2eq","co2","DE",2024,"v1","global_scalars.emission_reduction_target","global_scalars.equivalence_factor_co2_n2o","global_scalars.equivalence_factor_co2_ch4",0.022
+3,"ind_constraint_co2eq","co2","DE",2027,"v1","global_scalars.emission_reduction_target","global_scalars.equivalence_factor_co2_n2o","global_scalars.equivalence_factor_co2_ch4",0.022
+4,"ind_constraint_co2eq","co2","DE",2030,"v1","global_scalars.emission_reduction_target","global_scalars.equivalence_factor_co2_n2o","global_scalars.equivalence_factor_co2_ch4",0.022
+5,"ind_constraint_co2eq","co2","DE",2035,"v1","global_scalars.emission_reduction_target","global_scalars.equivalence_factor_co2_n2o","global_scalars.equivalence_factor_co2_ch4",0.022
+6,"ind_constraint_co2eq","co2","DE",2040,"v1","global_scalars.emission_reduction_target","global_scalars.equivalence_factor_co2_n2o","global_scalars.equivalence_factor_co2_ch4",0.022
+7,"ind_constraint_co2eq","co2","DE",2045,"v1","global_scalars.emission_reduction_target","global_scalars.equivalence_factor_co2_n2o","global_scalars.equivalence_factor_co2_ch4",0.022
+8,"ind_constraint_co2eq","co2","DE",2050,"v1","global_scalars.emission_reduction_target","global_scalars.equivalence_factor_co2_n2o","global_scalars.equivalence_factor_co2_ch4",0.022
+9,"ind_constraint_co2eq","co2","DE",2060,"v1","global_scalars.emission_reduction_target","global_scalars.equivalence_factor_co2_n2o","global_scalars.equivalence_factor_co2_ch4",0.022
+10,"ind_constraint_co2eq","co2","DE",2070,"v1","global_scalars.emission_reduction_target","global_scalars.equivalence_factor_co2_n2o","global_scalars.equivalence_factor_co2_ch4",0.022
