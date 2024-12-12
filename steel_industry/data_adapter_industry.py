@@ -41,7 +41,7 @@ EnergySystem.from_datapackage = classmethod(deserialize_energy_system)
 Model.add_constraints_from_datapackage = deserialize_constraints
 
 # settings
-DEBUG = False  # set to False for full run. DEBUG reduces to 24 time steps per period
+DEBUG = True  # set to False for full run. DEBUG reduces to 24 time steps per period
 READ_DUMP = False  # set to True to process previous results
 UNITS = [  # for unit conversion of data_adapter
     "MtCO2eq",
