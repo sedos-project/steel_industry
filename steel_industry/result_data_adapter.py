@@ -49,8 +49,7 @@ def process_result(input_path, output_path, scenario, units):
     functions.add_units(sedos_results, units)
 
     # calculate emissions CO2_eq
-    #used equation: co2_eq = 28 x ch4 + 265 x n2o
-    #"emi_ch4_f_ind", "emi_n2o_f_ind"
+    # used equation: co2_eq = co2 + 28 x ch4 + 265 x n2o
     sedos_results = functions.calculate_co2_eq(sedos_results)
 
     # fill columns "scenario" and "id"
