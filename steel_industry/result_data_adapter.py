@@ -32,16 +32,15 @@ def process_result(input_path, output_path, scenario, units):
     functions.name_function(data, output)
     functions.var_name_function(data, output)
 
-    functions.add_units(output, units)
-
     # calculate results for helper_output dataframe
     functions.helper_results(helper, helper_output)
     helper_output["value"] = helper["var_value"]
-    helper_output.unit = "t"  # -> @SH will be replaced
 
     # concat output and helper
     sedos_results = pd.concat([output, helper_output], ignore_index=True)
-    # @SH maybe add units here. -> avoiding double code
+
+    # add units
+    functions.add_units(sedos_results, units)
 
     # calculate emissions CO2_eq
     #used equation: co2_eq = 28 x ch4 + 265 x n2o

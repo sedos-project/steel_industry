@@ -96,6 +96,7 @@ def var_name_function(data,output):
             output.loc[i, "process"] = '_'.join(a[:2])
             output.loc[i, "parameter"] = a[-1]
 
+
 def add_units(output, units):
     """
     Adds units to `output` depending on input data units.
@@ -132,25 +133,34 @@ def add_units(output, units):
                 possible_units_dict = {
                     key: value for key, value in possible_units_dict.items()
                         if "ef_" not in key and "flow_share_" not in key}
+            if x.process == "helper_source_exo_steel" or x.process == "helper_sink_exo_steel":
+                return "Mt"
 
-        elif parameter == "capacity_x_inst":
+        elif parameter == "capacity_new" or parameter == "capacity_inst":
             possible_units_dict = {
                 key: value for key, value in units.items() if "capacity" in key}
             if len(possible_units_dict) != 1:
                 possible_units_dict = {key: value for key, value in
                                        units.items() if commodity in key}
+            if x.process == "x2x_other_biogas_treatment":
+                return "MW"
 
-        elif parameter == "cost_inv_x":
+        elif parameter == "costs_investment":
             possible_units_dict = {
                 key: value for key, value in units.items() if
                 "cost_inv" in key}
+            if x.process == "x2x_other_biogas_treatment":
+                return "EUR"
         else:
+            logging.warning(
+                f"Add {parameter} to add_units() to get unit for {x['process']}.")
             return np.nan
-            logging.warning(f"No unit found for {parameter} of {x['process']}.")
 
         possible_units = list(
             set([value for value in possible_units_dict.values()]))
         if len(possible_units) != 1:
+            if x.process == "helper_pow_ind_grid_elec":
+                return "MWh"
             logging.warning(
                 f"No unit or more than one unit found for {commodity} of "
                 f"{x['process']}: {possible_units}.")
