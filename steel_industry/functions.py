@@ -135,6 +135,8 @@ def add_units(output, units):
                         if "ef_" not in key and "flow_share_" not in key}
             if x.process == "helper_source_exo_steel" or x.process == "helper_sink_exo_steel":
                 return "Mt"
+            elif "helper_import_electricity_from_plug" in x.process:
+                return "MWh"
 
         elif parameter == "capacity_new" or parameter == "capacity_inst":
             possible_units_dict = {
@@ -195,6 +197,12 @@ def helper_results(helper,output):
             output.loc[i,"sector"] = "ind"
             output.loc[i,"category"] = "electricity"
             output.loc[i, "specification"] = "plug"
+            output.loc[i, "new"] = 1
+            continue
+        if helper.loc[i,"name"] == "helper_import_electricity_from_plug_renewable":
+            output.loc[i,"sector"] = "ind"
+            output.loc[i,"category"] = "electricity"
+            output.loc[i, "specification"] = "shortage"
             output.loc[i, "new"] = 1
             continue
         if helper.loc[i,"name"] == "helper_source_exo_steel":

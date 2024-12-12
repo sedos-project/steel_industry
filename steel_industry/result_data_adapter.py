@@ -25,7 +25,8 @@ def process_result(input_path, output_path, scenario, units):
 
     # pick helper processes
     helper_processes = ["helper_import_electricity_from_plug", "helper_source_exo_steel",
-                        "helper_pow_ind_grid_elec", "helper_sink_exo_steel"]
+                        "helper_pow_ind_grid_elec", "helper_sink_exo_steel",
+                        "helper_import_electricity_from_plug_renewable"]
     helper = functions.filter_rows_by_helper(data, helper_processes)
 
     # Remove all rows where the entries in the “name” column begin with “helper”
