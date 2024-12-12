@@ -231,7 +231,7 @@ def calculate_co2_eq(sedos_results):
     ).reset_index()
     # fill NaN with "0"
     pivot_df = pivot_df.fillna(0)
-    pivot_df["emi_co2_eq"] = (pivot_df["emi_co2_p_ind"] + pivot_df["emi_co2_neg_imp"] + pivot_df["emi_co2_reusable"] +
+    pivot_df["emi_co2_eq"] = abs(pivot_df["emi_co2_p_ind"] - pivot_df["emi_co2_neg_imp"] + pivot_df["emi_co2_reusable"] +
                               pivot_df["emi_co2_f_pow"] + pivot_df["emi_co2_f_ind"] + 28 * pivot_df["emi_ch4_f_ind"] + 265 * pivot_df["emi_n2o_f_ind"])
 
     # create dataframe with new rows included calculated co2 - emissions
