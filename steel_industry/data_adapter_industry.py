@@ -40,8 +40,20 @@ EnergySystem.from_datapackage = classmethod(deserialize_energy_system)
 
 Model.add_constraints_from_datapackage = deserialize_constraints
 
-DEBUG = True  # set to False for full run. DEBUG reduces to 5 time steps per period
-READ_DUMP = False
+# settings
+DEBUG = True  # set to False for full run. DEBUG reduces to 24 time steps per period
+READ_DUMP = False  # set to True to process previous results
+UNITS = [  # for unit conversion of data_adapter
+    "MtCO2eq",
+    "MWh", "MW", "Mt", "EUR",
+    "EUR/MWh",
+    "MWh/MWh", "MWh/t", "Mt/Mt",  # conversion factor units
+    "EUR/Mt",
+    "Mt/MWh",
+         ]
+
+
+model_structure = "SEDOS_Modellstruktur_steel_sector_section"
 
 if DEBUG:
     logging.info("Simulation running in debug mode. Set DEBUG to False for full simulation.")
@@ -53,24 +65,24 @@ if not es_dump_path.exists():
     es_dump_path.mkdir()
 
 if not READ_DUMP:
-    # delete collection before downloading
+    ## delete collection before downloading
     # shutil.rmtree(pathlib.Path(__file__).parent / "collections" / "steel_industry_test")
-    download_collection(
-        "https://databus.openenergyplatform.org/felixmaur/collections/steel_industry_test/"
-    )
+    # download_collection(
+    #     "https://databus.openenergyplatform.org/felixmaur/collections/steel_industry_test/"
+    # )
 
     logger.info("Reading Structure\n")
     structure = Structure(
-        "SEDOS_Modellstruktur",
+        model_structure,
         process_sheet="Processes_O1",
         parameter_sheet="Parameter_Input-Output",
         helper_sheet="Helper_O1",
-        # new_emission_constraint_inputs=False,  # todo delete !!!
     )
 
     adapter = Adapter(
         "steel_industry_test",
         structure=structure,
+        units=UNITS,
     )
 
     logger.info("Building Adapter Map\n")
@@ -83,7 +95,7 @@ if not READ_DUMP:
             ).to_dict(orient="dict")["facade adapter (oemof)"]
 
     logger.info("Building datapackage...\n")
-    dp = DataPackage.build_datapackage(
+    dp, units = DataPackage.build_datapackage(
         adapter=adapter,
         process_adapter_map=process_adapter_map,
         parameter_map=PARAMETER_MAP_STEEL,
@@ -94,7 +106,6 @@ if not READ_DUMP:
 
     # delete datapackage before saving it as otherwise old elements are kept
     shutil.rmtree(datapackage_path)
-
     dp.save_datapackage_to_csv(str(datapackage_path))
 
 
@@ -112,12 +123,17 @@ if not READ_DUMP:
             "storage": Storage,
             "conversion_ghg": ConversionGHG,
             "commodity_ghg": CommodityGHG,
-            "co2_emission_limit": CO2EmissionLimit,
         },
     )
 
     logger.info("Building Model...\n")
     m = Model(es)
+    Model.add_constraints_from_datapackage(
+        model=m,
+        path="datapackage/datapackage.json",
+        constraint_type_map={"co2_emission_limit": CO2EmissionLimit}
+    )
+
     logger.info("Solving Model...\n")
     m.solve(solver="cbc")
 
@@ -127,9 +143,10 @@ if not READ_DUMP:
     else:
         logging.info(f"Problem solved. (termination condition '{termination_condition}')\n")
 
-    logger.info("Processing Results")
+    logger.info("Processing Results...\n")
     es.results = postprocessing.get_results(m)
     es.params = postprocessing.get_inputs(m)
+    es.units = units
     # dump energy system to read results again
     es.dump(es_dump_path)
 else:
@@ -138,7 +155,7 @@ else:
     es = EnergySystem()
     es.restore(es_dump_path)
 
-# process and save results
+logger.info("Post-processing results...\n")
 file_name = pathlib.Path(__file__).parent / "results" / "test" / "results.csv"
 postprocessing.process_results(es, file_name)
 logger.info("Writing Results and Goodbye :)")

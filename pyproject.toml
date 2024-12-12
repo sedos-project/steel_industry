@@ -16,7 +16,7 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.poetry.dependencies]
 python = ">=3.10,<3.11"
-data_adapter_oemof = { git = "https://github.com/sedos-project/data_adapter_oemof.git", branch = "dev"}
+data_adapter_oemof = { git = "https://github.com/sedos-project/data_adapter_oemof.git", branch = "sedos/steel_sector"}
 #data_adapter = { git = "https://git@github.com/sedos-project/data_adapter", branch = "dev"}
 #oemof-tabular = { git = "https://git@github.com/oemof/oemof-tabular", branch = "dev"}
 #oemof-industry = { git = "https://github.com/sedos-project/oemof.industry.git", branch = "main"}

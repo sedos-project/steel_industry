@@ -21,8 +21,6 @@ def process_component_data(component_data):
     }
     # all sequences have to be of the same length
     length_dict = {key: len(value) for key, value in component_data["sequences"].items()}
-    if bool(length_dict):
-        print(f"Amount of time steps per parameter before stretching: {length_dict}") # todo delete
     if len(set(length_dict.values())) > 1:
         max_length = max(
             len(value) for value in component_data["sequences"].values())

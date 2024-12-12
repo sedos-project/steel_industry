@@ -1,7 +1,9 @@
+import logging
+
 import pandas as pd
 
 from oemof.solph import processing
-from oemof.tabular.postprocessing import calculations, core, naming
+from oemof.tabular.postprocessing import calculations, core, naming, helper
 
 
 def get_results(model):
@@ -32,6 +34,31 @@ def get_inputs(model):
 
 
 def process_results(es, file_name):
-    all_scalars = calculations.run_postprocessing(es)
+    calculator = core.Calculator(es.params, es.results)
+
+    aggregated_flows = calculations.AggregatedFlows(calculator,
+                                                    resample_mode="YE").result
+    aggregated_flows.index = aggregated_flows.index.year
+    aggregated_flows = helper.get_value_by_year(aggregated_flows)
+
+    invested_capacity = calculations.InvestedCapacity(calculator).result
+    invested_capacity_costs = calculations.InvestedCapacityCosts(
+        calculator).result
+
+    all_scalars = pd.concat([
+        aggregated_flows,
+        invested_capacity,
+        invested_capacity_costs,
+    ], axis=0)
+
+    naming.map_var_names(
+        all_scalars,
+        calculator.scalar_params,
+        calculator.busses,
+        calculator.links,
+    )
+
+    all_scalars.name = "var_value"
+    all_scalars = pd.DataFrame(all_scalars)
 
     all_scalars.to_csv(file_name)

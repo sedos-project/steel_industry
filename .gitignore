@@ -6,3 +6,5 @@ __pycache__/
 /steel_industry/structures/*
 /steel_industry/results/*
 /steel_industry/mappings/*
+/steel_industry/api_add_column.py
+/steel_industry/local_test_results.py
