@@ -57,10 +57,3 @@ def process_result(input_path, output_path, scenario, units):
 
     # save results as csv
     sedos_results.to_csv(output_path, sep=";", index=False)
-
-
-if __name__ == "__main__":
-    process_result(input_path = pathlib.Path(__file__).parent / "results" / "test" / "results.csv",
-                   output_path = pathlib.Path(__file__).parent / "results" / "dashboard_results" / "sedos_results.csv",
-                   scenario = "test_o_steel_tokio_v3")
-

@@ -32,6 +32,7 @@ from oemof_industry.emission_constraint import CO2EmissionLimit
 
 from steel_industry.parameter_map import PARAMETER_MAP_STEEL
 from steel_industry import postprocessing
+from steel_industry import result_data_adapter
 
 logger = logging.getLogger()
 logging.basicConfig(level=logging.INFO)
@@ -51,8 +52,6 @@ UNITS = [  # for unit conversion of data_adapter
     "EUR/Mt",
     "Mt/MWh",
          ]
-
-
 model_structure = "SEDOS_Modellstruktur_steel_sector_section"
 
 if DEBUG:
@@ -106,6 +105,7 @@ if not READ_DUMP:
 
     # delete datapackage before saving it as otherwise old elements are kept
     shutil.rmtree(datapackage_path)
+
     dp.save_datapackage_to_csv(str(datapackage_path))
 
 
@@ -156,6 +156,13 @@ else:
     es.restore(es_dump_path)
 
 logger.info("Post-processing results...\n")
-file_name = pathlib.Path(__file__).parent / "results" / "test" / "results.csv"
-postprocessing.process_results(es, file_name)
+results_path = pathlib.Path(__file__).parent / "results" / "test" / "results.csv"
+postprocessing.process_results(es, results_path)
+
+logging.info("Adapting results with results data adapter...\n")
+units = es.units
+dashboard_results_path = pathlib.Path(__file__).parent / "results" / "dashboard_results" / "sedos_results.csv"
+scenario = "test_o_steel_tokio_v3"
+result_data_adapter.process_result(input_path=results_path, output_path=dashboard_results_path, scenario=scenario, units=units)
+
 logger.info("Writing Results and Goodbye :)")
