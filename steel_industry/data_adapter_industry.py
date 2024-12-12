@@ -67,9 +67,9 @@ if not es_dump_path.exists():
 if not READ_DUMP:
     ## delete collection before downloading
     # shutil.rmtree(pathlib.Path(__file__).parent / "collections" / "steel_industry_test")
-    download_collection(
-        "https://databus.openenergyplatform.org/felixmaur/collections/steel_industry_test/"
-    )
+    # download_collection(
+    #     "https://databus.openenergyplatform.org/felixmaur/collections/steel_industry_test/"
+    # )
 
     logger.info("Reading Structure\n")
     structure = Structure(
