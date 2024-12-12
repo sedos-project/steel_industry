@@ -3,7 +3,7 @@ import pathlib
 from steel_industry import functions
 
 
-def process_result(input_path, output_path, scenario):
+def process_result(input_path, output_path, scenario, units):
     # read .csv data from input_path
     data = pd.read_csv(input_path, sep=",")
 
@@ -31,7 +31,8 @@ def process_result(input_path, output_path, scenario):
     output.year = data.year
     functions.name_function(data, output)
     functions.var_name_function(data, output)
-    output.unit = "t"  # -> @ SH will be replaced
+
+    functions.add_units(output, units)
 
     # calculate results for helper_output dataframe
     functions.helper_results(helper, helper_output)
