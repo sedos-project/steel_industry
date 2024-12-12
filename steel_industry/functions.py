@@ -251,18 +251,6 @@ def calculate_co2_eq(sedos_results):
 
     return sedos_results
 
-def check_units(sedos_results):
-    energy_units = ["MWh", "kWh", "PJ","Mt","Mt/a","kg"]
-    power_units = ["W","kW","MW","GW"]
-    # Change the values in the 'parameter' column based on the units in the 'unit' column
-    sedos_results["parameter"] = sedos_results.apply(
-        lambda row: "capacity_w_inst" if row["parameter"] == "capacity_x_inst" and row["unit"] in energy_units
-        else "capacity_p_inst" if row["parameter"] == "capacity_x_inst" and row["unit"] in power_units
-        else row["parameter"],
-        axis=1
-    )
-    return sedos_results
-
 
 
 
