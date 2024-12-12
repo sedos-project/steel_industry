@@ -1,7 +1,13 @@
 import pandas as pd
 import pathlib
+
+from oemof.tabular.cli import scenarios
+
 from steel_industry import functions
 
+#input_path = "results/test/results.csv"
+#output_path = "results/dashboard_results/sedos_results.csv"
+#scenario = "test_o_steel_tokio_v3"
 
 def process_result(input_path, output_path, scenario, units):
     # read .csv data from input_path
