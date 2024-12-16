@@ -157,7 +157,7 @@ else:
     es.restore(es_dump_path)
 
 logger.info("Post-processing results...\n")
-results_path = pathlib.Path(__file__).parent / "results" / "test" / "results.csv"
+results_path = pathlib.Path(__file__).parent / "results" / "results.csv"
 postprocessing.process_results(es, results_path)
 
 logging.info("Adapting results with results data adapter...\n")
