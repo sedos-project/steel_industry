@@ -9,7 +9,7 @@ from steel_industry import functions
 #output_path = "results/dashboard_results/sedos_results.csv"
 #scenario = "test_o_steel_tokio_v3"
 
-def process_result(input_path, output_path, scenario, units):
+def process_result(input_path, output_path, scenario, units, factor_flow_volume):
     # read .csv data from input_path
     data = pd.read_csv(input_path, sep=",")
 
@@ -48,6 +48,9 @@ def process_result(input_path, output_path, scenario, units):
 
     # add units
     functions.add_units(sedos_results, units)
+
+    # adapt flow volume to full year
+    sedos_results.loc[sedos_results['parameter'] == 'flow_volume', 'value'] *= factor_flow_volume
 
     # calculate emissions CO2_eq
     # used equation: co2_eq = co2 + 28 x ch4 + 265 x n2o

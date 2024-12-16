@@ -44,6 +44,7 @@ Model.add_constraints_from_datapackage = deserialize_constraints
 # settings
 DEBUG = True  # set to False for full run. DEBUG reduces to 24 time steps per period
 READ_DUMP = False  # set to True to process previous results
+factor_flow_volume = 365  # depending on debug. 365 as we simulate one day
 UNITS = [  # for unit conversion of data_adapter
     "MtCO2eq",
     "MWh", "MW", "Mt", "EUR",
@@ -163,6 +164,6 @@ logging.info("Adapting results with results data adapter...\n")
 units = es.units
 dashboard_results_path = pathlib.Path(__file__).parent / "results" / "dashboard_results" / "sedos_results.csv"
 scenario = "test_o_steel_tokio_v3"
-result_data_adapter.process_result(input_path=results_path, output_path=dashboard_results_path, scenario=scenario, units=units)
+result_data_adapter.process_result(input_path=results_path, output_path=dashboard_results_path, scenario=scenario, units=units, factor_flow_volume=factor_flow_volume)
 
 logger.info("Writing Results and Goodbye :)")
