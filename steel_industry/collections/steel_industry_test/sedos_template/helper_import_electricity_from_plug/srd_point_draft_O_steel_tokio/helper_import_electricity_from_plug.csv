@@ -1,0 +1,11 @@
+"id","version","year","carrier","category","region","type","ef_sec_elec_emi_co2_f_pow","cost_var_e"
+31,"srd_point_draft_O_steel_tokio",2021,"sec_elec","import","De","helper_import_electricity_from_plug",500,81.6
+32,"srd_point_draft_O_steel_tokio",2024,"sec_elec","import","De","helper_import_electricity_from_plug",362.7,171.7
+33,"srd_point_draft_O_steel_tokio",2027,"sec_elec","import","De","helper_import_electricity_from_plug",192.5,166.7
+34,"srd_point_draft_O_steel_tokio",2030,"sec_elec","import","De","helper_import_electricity_from_plug",112,167.1
+35,"srd_point_draft_O_steel_tokio",2035,"sec_elec","import","De","helper_import_electricity_from_plug",48,126.6
+36,"srd_point_draft_O_steel_tokio",2040,"sec_elec","import","De","helper_import_electricity_from_plug",27.9,109.3
+37,"srd_point_draft_O_steel_tokio",2045,"sec_elec","import","De","helper_import_electricity_from_plug",24.2,100.6
+38,"srd_point_draft_O_steel_tokio",2050,"sec_elec","import","De","helper_import_electricity_from_plug",27.9,92
+39,"srd_point_draft_O_steel_tokio",2060,"sec_elec","import","De","helper_import_electricity_from_plug",0,81.1
+40,"srd_point_draft_O_steel_tokio",2070,"sec_elec","import","De","helper_import_electricity_from_plug",0,71.5
