@@ -7,7 +7,6 @@ import logging
 def split_name(name):
     """
     divide a "_"-seperated string into a list of strings, depending on last charakter is digit.
-    return: list of strings.
     Parameters
     ----------
     name: string
