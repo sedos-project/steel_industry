@@ -35,13 +35,14 @@ def process_result(input_path, output_path, scenario, units, factor_flow_volume)
 
     # calculate results for output dataframe
     output.value = data.var_value
-    output.year = data.year
+    output.year = data.year.apply(lambda x: int(x))
     functions.name_function(data, output)
     functions.var_name_function(data, output)
 
     # calculate results for helper_output dataframe
     functions.helper_results(helper, helper_output)
     helper_output["value"] = helper["var_value"]
+    helper_output["year"] = helper["year"].apply(lambda x: int(x))
 
     # concat output and helper
     sedos_results = pd.concat([output, helper_output], ignore_index=True)
