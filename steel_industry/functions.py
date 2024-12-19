@@ -5,11 +5,14 @@ import logging
 
 
 def split_name(name):
-    '''
-    :param:  name: (string) - Entry in the “name” column of result.csv
-    :return: (list) of strings
-    :logik: divide a "_"-seperated string into a list of strings
-    '''
+    """
+    divide a "_"-seperated string into a list of strings, depending on last charakter is digit.
+    return: list of strings.
+    Parameters
+    ----------
+    name: string
+        certain entry in the “name” column of result.csv.
+    """
     a = name.split('_')
     if len(a) == 1:
         return a
@@ -21,12 +24,16 @@ def split_name(name):
             return name.split('_')
 
 def name_function(data,output):
-    '''
-    :param:  data: (pd.Dataframe)
-             output: (pd.Dataframe)
-    :return: output values for output
-    :logik: Splits the entries in column “name” of data and corresponding assignment in columns of output
-    '''
+    """
+    Splits the entries in column “name” of data and corresponding assignment in columns of output.
+    Parameters
+    ----------
+    data: pd.Dataframe
+        Contains the data of results.csv without helper_processes.
+    output: pd.Dataframe.
+        Contains the output data at current stage. See result_data_adapter.py
+        for column names.
+    """
     for i in data.index:
         a = split_name(data.loc[i, "name"])
         # Various conditions, depending on the entries in the “name” column
@@ -52,12 +59,16 @@ def name_function(data,output):
             output.loc[i, "new"] = 0 if data.loc[i, "name"] in ["ind_source_steel_scrap_iron"] else 1
 
 def var_name_function(data,output):
-    '''
-    :param:  data: (pd.Dataframe)
-                 output: (pd.Dataframe)
-    :return: output values (string/int) for output (pd.Dataframe)
-    :logik: Splits the entries in column “var_name” of data and corresponding assignment in columns of output
-    '''
+    """
+    Splits the entries in column “var_name” of data and apply corresponding assignment in columns of output.
+    Parameters
+    ----------
+    data: pd.Dataframe
+        Contains the data of results.csv.
+    output: pd.Dataframe.
+        Contains the output data at current stage. See result_data_adapter.py
+        for column names.
+    """
     for i in data.index:
         a = data.loc[i, "var_name"].split('_')
         # Various conditions, depending on the entries in the “var_name” column
@@ -95,7 +106,6 @@ def var_name_function(data,output):
         else:
             output.loc[i, "process"] = '_'.join(a[:2])
             output.loc[i, "parameter"] = a[-1]
-
 
 def add_units(output, units):
     """
@@ -182,14 +192,47 @@ def add_units(output, units):
     ].apply(lambda x: apply_units(x, units[x["process"]], output), axis=1)
 
 def change_values_to_string_array(output, columns):
+    """
+    change datatype of certain columns from string to string-array.
+    Parameters
+    ----------
+    output: pd.Dataframe
+        Contains the output data at current stage. See result_data_adapter.py
+        for column names.
+    columns: string-array
+        Contains certain columns of output.
+    """
     for column in columns:
         output[column] = output[column].apply(
             lambda x: json.dumps([x]) if x is not np.nan else np.nan)
 
 def filter_rows_by_helper(data,helper_processes):
+    """
+    returns pd.dataframe with selected helper_processes from data.
+    Parameters
+    ----------
+    data: pd.Dataframe
+        Contains the data of results.csv.
+    helper_processes: string-array
+        Contains selected helper_processes.
+    """
     return data[data["name"].isin(helper_processes)]
 
 def helper_results(helper,output):
+    """
+    generate results for helper_output from data which contains helper_processes.
+
+    uses var_name_function to Splits the entries in column
+    “var_name” of data and apply corresponding assignment in columns of helper_output.
+
+    Parameters
+    ----------
+    helper: pd.Dataframe
+        Contains the data with helper_processes of results.csv.
+    output: pd.Dataframe
+        Contains the helper_output data at current stage. See result_data_adapter.py
+        for column names.
+    """
     for i in helper.index:
         output.loc[i, "process"] = helper.loc[i, "name"]
         output.loc[i, "year"] = helper.loc[i, "year"]
@@ -226,7 +269,14 @@ def helper_results(helper,output):
     var_name_function(helper,output)
 
 def calculate_co2_eq(sedos_results):
-    # filter sedos_results by processes with ch4 and n20 emissions
+    """
+    Calculate equivalent co2-emissions of all processes and generate new rows with output_group "emi_co2_eq".
+    Parameters
+    ----------
+    sedos_results: pd.Dataframe
+        Contains the sedos_results at current stage. See result_data_adapter.py.
+    """
+    # filter sedos_results by processes with ch4-, n20- and co2-emissions
     emis = ["emi_ch4_f_ind", "emi_n2o_f_ind", "emi_co2_p_ind", "emi_co2_neg_imp", "emi_co2_reusable", "emi_co2_f_pow", "emi_co2_f_ind"]
     sedos_emis = sedos_results[sedos_results["output_groups"].isin(emis)]
 

@@ -5,20 +5,17 @@ from oemof.tabular.cli import scenarios
 
 from steel_industry import functions
 
-#input_path = "results/test/results.csv"
-#output_path = "results/dashboard_results/sedos_results.csv"
-#scenario = "test_o_steel_tokio_v3"
 
 def process_result(input_path, output_path, scenario, units, factor_flow_volume):
-    # read .csv data from input_path
+    # read results.csv data from input_path
     data = pd.read_csv(input_path, sep=",")
 
-    # create empty dataframes for results
+    # create empty dataframes for sedos_results
     columns = ["id", "scenario", "process", "parameter", "sector", "category",
                "specification", "new", "groups", "input_groups", "output_groups",
                "year", "unit", "value"]
-    output = pd.DataFrame(columns=columns)
-    helper_output = pd.DataFrame(columns=columns)
+    output = pd.DataFrame(columns=columns) # -> sedos_results without helper_processes
+    helper_output = pd.DataFrame(columns=columns) # -> sedos_results only with helper_processes
 
     # Applies a string replacement to each value in the name column.
     data["name"] = data["name"].str.replace(r"--\d+$", "", regex=True)
