@@ -10,7 +10,7 @@ def split_name(name):
     Parameters
     ----------
     name: string
-        certain entry in the “name” column of result.csv.
+        `name` splitted by underscoores
     """
     a = name.split('_')
     if len(a) == 1:
