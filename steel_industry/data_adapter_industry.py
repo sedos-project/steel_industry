@@ -53,7 +53,7 @@ UNITS = [  # for unit conversion of data_adapter
     "EUR/Mt",
     "Mt/MWh",
          ]
-model_structure = "SEDOS_Modellstruktur_steel_sector_section"
+model_structure = "SEDOS_Modellstruktur_steel_industry_section"
 
 if DEBUG:
     logging.info("Simulation running in debug mode. Set DEBUG to False for full simulation.")
