@@ -53,7 +53,7 @@ UNITS = [  # for unit conversion of data_adapter
     "EUR",
     "EUR/MWh",
     "MWh/MWh",
-    "MWh/kt",
+    "MWh/Mt",
     "Mt/Mt",  # conversion factor units
     "EUR/Mt",
     "Mt/MWh",
