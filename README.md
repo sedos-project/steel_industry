@@ -1,10 +1,24 @@
 # Steel industry
 
-Models steel industry with the SEDOS reference dataset.
+Models steel industry with the SEDOS reference dataset. 
 
 ## Introduction
+In the SEDOS project, we created an open-source model structure and data set that incorporates 
+key future technologies for electricity, heat, conversions, transport, and industry within a 
+sector-coupled energy system. 
+Within this repository a part of this energy system is modeled (steel industry).
+Functionalities include:
+* Download of data and metadata from a DataBus Collection
+* Transformation and adaption of data with [data_adapter](https://github.com/sedos-project/data_adapter) and [data_adapter_oemof](https://github.com/sedos-project/data_adapter_oemof).
+* Bulilding of energy system with [oemof.tabular]()
+* Solving of energy system and processing results
+* Postprocessing of results with integrated result data adapter for visualising results with the [SEDOS-dashboard](https://sedos.apps.rl-institut.de).
 
-## Installation
+For more information about the SEDOS project check out our [documentation](https://sedos-project.github.io/organization/).
+
+## Getting Started
+
+### Installation
 
 To install steel_industry, follow these steps:
 
@@ -16,19 +30,8 @@ To install steel_industry, follow these steps:
 * install data_adapter_oemof package using poetry, via: `poetry install`
 * If you have trouble try `poetry update`.
 
-## Data
+Note: data_adapter_oemof is installed on branch `sedos/steel_sector`
 
-## Documentation
+### Usage
 
-https://sedos-project.github.io/organization/scenarios/
-https://sedos-project.github.io/organization/results/
-
-
-## Code linting
-
-In this template, 3 possible linters are proposed:
-- flake8 only sends warnings and error about linting (PEP8)
-- pylint sends warnings and error about linting (PEP8) and also allows warning about imports order
-- black sends warning but can also fix the files for you
-
-You can perfectly use the 3 of them or subset, at your preference. Don't forget to edit `.travis.yml` if you want to deactivate the automatic testing of some linters!
+To model the steel industry run the script `run_steel_industry`.
