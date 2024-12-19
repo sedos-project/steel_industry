@@ -47,16 +47,23 @@ READ_DUMP = False  # set to True to process previous results
 factor_flow_volume = 365  # depending on debug. 365 as we simulate one day
 UNITS = [  # for unit conversion of data_adapter
     "MtCO2eq",
-    "MWh", "MW", "Mt", "EUR",
+    "MWh",
+    "MW",
+    "Mt",
+    "EUR",
     "EUR/MWh",
-    "MWh/MWh", "MWh/kt", "Mt/Mt",  # conversion factor units
+    "MWh/MWh",
+    "MWh/kt",
+    "Mt/Mt",  # conversion factor units
     "EUR/Mt",
     "Mt/MWh",
-         ]
+]
 model_structure = "SEDOS_Modellstruktur_steel_industry_section"
 
 if DEBUG:
-    logging.info("Simulation running in debug mode. Set DEBUG to False for full simulation.")
+    logging.info(
+        "Simulation running in debug mode. Set DEBUG to False for full simulation."
+    )
     es_dump_path = pathlib.Path(__file__).parent / "results" / "energysystem"
 else:
     es_dump_path = pathlib.Path(__file__).parent / "results" / "energysystem_full"
@@ -88,11 +95,21 @@ if not READ_DUMP:
     logger.info("Building Adapter Map\n")
 
     # create dictionary with all found in- and outputs
-    processes = pd.read_excel(io=structure.structure_file, sheet_name="Processes_O1", usecols=("process", "facade adapter (oemof)"), index_col="process")
-    helper_processes = pd.read_excel(io=structure.structure_file, sheet_name="Helper_O1", usecols=("process", "facade adapter (oemof)"), index_col="process")
-    process_adapter_map = pd.concat(
-        [processes, helper_processes]
-            ).to_dict(orient="dict")["facade adapter (oemof)"]
+    processes = pd.read_excel(
+        io=structure.structure_file,
+        sheet_name="Processes_O1",
+        usecols=("process", "facade adapter (oemof)"),
+        index_col="process",
+    )
+    helper_processes = pd.read_excel(
+        io=structure.structure_file,
+        sheet_name="Helper_O1",
+        usecols=("process", "facade adapter (oemof)"),
+        index_col="process",
+    )
+    process_adapter_map = pd.concat([processes, helper_processes]).to_dict(
+        orient="dict"
+    )["facade adapter (oemof)"]
 
     logger.info("Building datapackage...\n")
     dp, units = DataPackage.build_datapackage(
@@ -108,7 +125,6 @@ if not READ_DUMP:
     shutil.rmtree(datapackage_path)
 
     dp.save_datapackage_to_csv(str(datapackage_path))
-
 
     logger.info("Building EnergySystem\n")
     es = EnergySystem.from_datapackage(
@@ -132,7 +148,7 @@ if not READ_DUMP:
     Model.add_constraints_from_datapackage(
         model=m,
         path="datapackage/datapackage.json",
-        constraint_type_map={"co2_emission_limit": CO2EmissionLimit}
+        constraint_type_map={"co2_emission_limit": CO2EmissionLimit},
     )
 
     logger.info("Solving Model...\n")
@@ -142,7 +158,9 @@ if not READ_DUMP:
     if m.solver_results["Solver"][0]["Termination condition"] == "infeasible":
         logger.warning(f"termination condition is '{termination_condition}'\n")
     else:
-        logging.info(f"Problem solved. (termination condition '{termination_condition}')\n")
+        logging.info(
+            f"Problem solved. (termination condition '{termination_condition}')\n"
+        )
 
     logger.info("Processing Results...\n")
     es.results = postprocessing.get_results(m)
@@ -152,7 +170,8 @@ if not READ_DUMP:
     es.dump(es_dump_path)
 else:
     logging.warning(
-        "Simulation results are restored from dump. Set READ_DUMP to False for a new simulation.")
+        "Simulation results are restored from dump. Set READ_DUMP to False for a new simulation."
+    )
     es = EnergySystem()
     es.restore(es_dump_path)
 
@@ -162,8 +181,19 @@ postprocessing.process_results(es, results_path)
 
 logging.info("Adapting results with results data adapter...\n")
 units = es.units
-dashboard_results_path = pathlib.Path(__file__).parent / "results" / "dashboard_results" / "sedos_results.csv"
+dashboard_results_path = (
+    pathlib.Path(__file__).parent
+    / "results"
+    / "dashboard_results"
+    / "sedos_results.csv"
+)
 scenario = "test_o_steel_tokio_v3"
-result_data_adapter.process_result(input_path=results_path, output_path=dashboard_results_path, scenario=scenario, units=units, factor_flow_volume=factor_flow_volume)
+result_data_adapter.process_result(
+    input_path=results_path,
+    output_path=dashboard_results_path,
+    scenario=scenario,
+    units=units,
+    factor_flow_volume=factor_flow_volume,
+)
 
 logger.info("Writing Results and Goodbye :)")
