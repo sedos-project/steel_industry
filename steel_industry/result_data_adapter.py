@@ -7,7 +7,7 @@ from steel_industry import functions
 
 
 def process_result(input_path, output_path, scenario, units, factor_flow_volume):
-    # read results.csv data from input_path
+    # read results data from input_path
     data = pd.read_csv(input_path, sep=",")
 
     # create empty dataframes for sedos_results
