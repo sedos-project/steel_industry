@@ -9,7 +9,7 @@ def split_name(name):
     divide a "_"-seperated string into a list of strings, depending on last charakter is digit.
     Parameters
     ----------
-    name: string
+    string
         `name` splitted by underscoores
     """
     a = name.split('_')
