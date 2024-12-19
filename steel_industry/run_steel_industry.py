@@ -187,7 +187,7 @@ dashboard_results_path = (
     / "dashboard_results"
     / "sedos_results.csv"
 )
-scenario = "test_o_steel_tokio_v3"
+scenario = "o_steel_tokio"
 result_data_adapter.process_result(
     input_path=results_path,
     output_path=dashboard_results_path,
